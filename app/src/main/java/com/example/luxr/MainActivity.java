@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void fabClicked (View v) {
+    public void fabClicked(View v) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             accountClicked();
             return true;
         } else if (id == R.id.action_settings) {
+            settingsClicked();
             return true;
         }
 
@@ -72,6 +73,12 @@ public class MainActivity extends AppCompatActivity {
     public void accountClicked() {
         View v = new View(this);
         Intent intent = new Intent(v.getContext(), AccountActivity.class);
+        startActivity(intent);
+    }
+
+    public void settingsClicked() {
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), SettingActivity.class);
         startActivity(intent);
     }
 
