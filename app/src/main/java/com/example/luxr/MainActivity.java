@@ -1,6 +1,10 @@
 package com.example.luxr;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int CAMERA_REQUEST = 10;
+    private ImageView imgPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +32,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                fabClicked(view);
             }
         });
+
+        imgPic =(ImageView) findViewById(R.id.imgPic);
     }
 
     @Override
@@ -33,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void fabClicked (View v) {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
     @Override
@@ -43,10 +59,34 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_account) {
+            accountClicked();
+            return true;
+        } else if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void accountClicked() {
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), AccountActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //if the user chooses OK, the code inside braces will execute
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST) {
+                //we are hearing back from the camera
+                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+                //at this point, we have image from camera
+                imgPic.setImageBitmap(cameraImage);
+            }
+        }
     }
 }
