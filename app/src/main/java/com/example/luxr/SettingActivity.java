@@ -36,9 +36,18 @@ public class SettingActivity extends AppCompatActivity {
         } else if (id == R.id.action_settings) {
             settingsClicked();
             return true;
+        } else if (id == R.id.action_home) {
+            homeClicked();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void homeClicked() {
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        startActivity(intent);
     }
 
     public void accountClicked() {
