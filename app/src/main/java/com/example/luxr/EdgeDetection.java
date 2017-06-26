@@ -14,6 +14,7 @@ public class EdgeDetection {
         //loading library
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 //        Mat color = Imgcodecs.imread()
+
     }
 
 }
