@@ -10,22 +10,33 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:padding="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
         android:text="@string/action_account"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="visible"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        tools:text="@string/action_account" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:padding="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
         android:text="@string/email"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="126dp" />
+        tools:layout_editor_absoluteY="178dp" />
 
     <EditText
         android:id="@+id/editText2"
@@ -33,26 +44,40 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
+        android:padding="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
         android:text="@string/first_name"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="40dp"
+        tools:layout_editor_absoluteY="86dp"
         tools:text="@string/first_name" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:padding="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
+        android:singleLine="true"
         android:text="Name"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="83dp"
+        tools:layout_editor_absoluteY="135dp"
         tools:text="@string/last_name" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:padding="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:paddingLeft="8dp"
         android:text="@string/save_account"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="240dp"
