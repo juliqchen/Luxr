@@ -23,11 +23,11 @@
         <activity android:name=".SettingActivity"></activity>
 
         <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
         <uses-feature android:name="android.hardware.camera" />
         <uses-feature android:name="android.hardware.camera.autofocus" />
 
-        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>

@@ -2,8 +2,11 @@ package com.example.luxr;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,9 +61,46 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //fabClicked v1.0.0
+//    public void fabClicked(View v) {
+//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//
+//        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+//        String pictureName = getPictureName();
+//        File imageFile = new File(pictureDirectory, pictureName);
+//        Uri pictureUri = Uri.fromFile(imageFile);
+//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
+//        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+//    }
+
+    //fabClicked v1.0.1
     public void fabClicked(View v) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        //finds the path and then makes a new folder called Luxr
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        System.out.println(path);
+        File dir = new File(path, "Luxr");
+        if (!dir.isDirectory()) {
+            dir.mkdirs();
+        }
+
+        //adds the picture to this new directory
+        String pictureName = getPictureName();
+        File imageFile = new File(dir, pictureName);
+        Uri pictureUri = Uri.fromFile(imageFile);
+
+        //??String imagePath = imageFile.getAbsolutePath();
+
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
+
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    }
+
+    private String getPictureName() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd_HHmmss");
+        String timestamp = sdf.format(new Date());
+        return "PlantPlacesImage" + timestamp + ".jpg";
     }
 
     @Override
@@ -106,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
         //if the user chooses OK, the code inside braces will execute
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST) {
-                //we are hearing back from the camera
-                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
-                //at this point, we have image from camera
-                imgPic.setImageBitmap(cameraImage);
+//                //we are hearing back from the camera
+//                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+//                //at this point, we have image from camera
+//                imgPic.setImageBitmap(cameraImage);
             }
         }
     }
