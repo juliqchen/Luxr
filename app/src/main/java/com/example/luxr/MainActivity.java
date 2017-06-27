@@ -2,6 +2,7 @@ package com.example.luxr;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
         // Remember that you should never show the action bar if the
         // status bar is hidden, so hide that too if necessary.
-        ActionBar actionBar = getActionBar();
-        actionBar.hide();
+//        ActionBar actionBar = getActionBar();
+//        actionBar.hide();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -82,22 +83,25 @@ public class MainActivity extends AppCompatActivity {
 //        Uri pictureUri = Uri.fromFile(imageFile);
 //        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
 
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            //create the file where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException e) {
-                System.out.println("Error: Image file was not created");
-            }
+//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+//            //create the file where the photo should go
+//            File photoFile = null;
+//            try {
+//                photoFile = createImageFile();
+//            } catch (IOException e) {
+//                System.out.println("Error: Image file was not created");
+//            }
+//
+//            //continue iff the File was successfully created
+//            if (photoFile != null) {
+//                Uri photoURI = Uri.fromFile(photoFile);
+//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+//                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+//            }
+//        }
 
-            //continue iff the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = Uri.fromFile(photoFile);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
-            }
-        }
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
 
     }
 
@@ -109,9 +113,9 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST) {
 //                //we are hearing back from the camera
-                //Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
 //                //at this point, we have image from camera
-                //imgPic.setImageBitmap(cameraImage);
+                imgPic.setImageBitmap(cameraImage);
 
             }
         }
@@ -134,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
 //        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
 //        return "PlantPlacesImage" + timestamp + ".jpg";
 //    }
+
+    private void detectEdges(Bitmap bitmap) {
+        Mat
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
