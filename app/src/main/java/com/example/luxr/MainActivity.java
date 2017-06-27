@@ -159,9 +159,22 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_home) {
             homeClicked();
             return true;
+<<<<<<< HEAD
+        } //else if (id == R.id.save_button){
+            //saveClicked();
+            //return true;
+        //}
+
+=======
         }
+>>>>>>> refs/remotes/origin/master
         return super.onOptionsItemSelected(item);
     }
+
+    //public void saveClicked(){
+    //    View v = new View(this);
+    //
+    //}
 
     public void homeClicked() {
         View v = new View(this);

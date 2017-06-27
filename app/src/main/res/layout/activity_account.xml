@@ -87,7 +87,7 @@
         tools:text="@string/last_name" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/save_button"
         android:layout_width="88dp"
         android:layout_height="48dp"
         android:padding="8dp"
