@@ -1,8 +1,7 @@
 package com.example.luxr;
 
+import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -40,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
         setContentView(R.layout.activity_main);
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+        // Remember that you should never show the action bar if the
+        // status bar is hidden, so hide that too if necessary.
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

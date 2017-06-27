@@ -14,29 +14,37 @@
         android:layout_height="70dp"
         android:padding="8dp"
         android:paddingBottom="8dp"
+        android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
         android:text="@string/action_account"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:visibility="visible"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:text="@string/action_account" />
+        tools:text="@string/action_account"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        android:layout_marginRight="15dp"
+        app:layout_constraintRight_toRightOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="43dp"
+        android:layout_marginBottom="34dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:padding="8dp"
         android:paddingBottom="8dp"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
-        android:singleLine="true"
+        android:paddingStart="8dp"
         android:text="@string/email"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="178dp" />
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/editText2"
@@ -46,28 +54,36 @@
         android:inputType="textPersonName"
         android:padding="8dp"
         android:paddingBottom="8dp"
+        android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
-        android:singleLine="true"
+
         android:text="@string/first_name"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="86dp"
-        tools:text="@string/first_name" />
+        tools:text="@string/first_name"
+        android:layout_marginBottom="19dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        android:layout_marginRight="-30dp"
+        app:layout_constraintRight_toRightOf="@+id/editText3"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="0dp"
         android:layout_height="43dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginRight="-42dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:padding="8dp"
         android:paddingBottom="8dp"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
-        android:singleLine="true"
-        android:text="Name"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="135dp"
+        android:paddingStart="8dp"
+        android:text="@string/last_name"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintRight_toRightOf="@+id/editText"
         tools:text="@string/last_name" />
 
     <Button
@@ -76,11 +92,14 @@
         android:layout_height="48dp"
         android:padding="8dp"
         android:paddingBottom="8dp"
+        android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
         android:text="@string/save_account"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="240dp"
-        tools:text="@string/save_account" />
+        tools:text="@string/save_account"
+        android:layout_marginRight="127dp"
+        app:layout_constraintRight_toRightOf="@+id/editText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="138dp" />
 
 </android.support.constraint.ConstraintLayout>
