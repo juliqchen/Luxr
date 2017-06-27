@@ -6,28 +6,25 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.luxr.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    tools:layout_editor_absoluteY="200dp"
+    tools:layout_editor_absoluteX="100dp">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to Luxr!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:layout_width="166dp"
+        android:layout_height="22dp"
+        android:text="@string/welcome"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/imgPic"
-        android:layout_width="231dp"
-        android:layout_height="332dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_marginTop="72dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:layout_marginLeft="67dp"
-        app:layout_constraintLeft_toLeftOf="@+id/textView3" />
+        android:layout_width="82dp"
+        android:layout_height="77dp"
+        app:srcCompat="@mipmap/ic_photo_camera_black_24dp"
+        tools:layout_editor_absoluteX="9dp"
+        android:layout_marginTop="82dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </android.support.constraint.ConstraintLayout>
