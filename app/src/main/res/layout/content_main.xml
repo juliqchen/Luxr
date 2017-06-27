@@ -12,19 +12,24 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="166dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/welcome"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginRight="11dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/imgPic"
-        android:layout_width="82dp"
-        android:layout_height="77dp"
+        android:layout_width="53dp"
+        android:layout_height="52dp"
         app:srcCompat="@mipmap/ic_photo_camera_black_24dp"
-        tools:layout_editor_absoluteX="9dp"
         android:layout_marginTop="82dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="23dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>
