@@ -13,7 +13,7 @@ public class EdgeDetection {
     public static void main(String[] args) {
         //loading library
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-//        Mat color = Imgcodecs.imread()
+        Mat color = Imgcodecs.imread(MainActivity.getmCurrentPhotoPath());
 
     }
 

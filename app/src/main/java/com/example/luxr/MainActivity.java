@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST = 10;
     private ImageView imgPic;
+    private static String mCurrentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        imgPic =(ImageView) findViewById(R.id.imgPic);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        imgPic =(ImageView) findViewById(R.id.imgPic);
     }
 
     @Override
@@ -68,46 +72,68 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //fabClicked v1.0.0
-//    public void fabClicked(View v) {
-//        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//
+    public void fabClicked(View v) {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        //not working from StackOverFlow
 //        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 //        String pictureName = getPictureName();
 //        File imageFile = new File(pictureDirectory, pictureName);
 //        Uri pictureUri = Uri.fromFile(imageFile);
 //        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
-//        startActivityForResult(cameraIntent, CAMERA_REQUEST);
-//    }
 
-    //fabClicked v1.0.1
-    public void fabClicked(View v) {
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            //create the file where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException e) {
+                System.out.println("Error: Image file was not created");
+            }
 
-        //finds the path and then makes a new folder called Luxr
-        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        System.out.println(path);
-        File dir = new File(path, "Luxr");
-        if (!dir.isDirectory()) {
-            dir.mkdirs();
+            //continue iff the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = Uri.fromFile(photoFile);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
         }
 
-        //adds the picture to this new directory
-        String pictureName = getPictureName();
-        File imageFile = new File(dir, pictureName);
-        Uri pictureUri = Uri.fromFile(imageFile);
-
-        //??String imagePath = imageFile.getAbsolutePath();
-
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
-
-        startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
-    private String getPictureName() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd_HHmmss");
-        String timestamp = sdf.format(new Date());
-        return "PlantPlacesImage" + timestamp + ".jpg";
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //if the user chooses OK, the code inside braces will execute
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST) {
+//                //we are hearing back from the camera
+                //Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+//                //at this point, we have image from camera
+                //imgPic.setImageBitmap(cameraImage);
+
+            }
+        }
     }
+
+    private File createImageFile() throws IOException {
+        //create an image file name
+        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "PlantPlacesImage" + timestamp;
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+
+        //save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        System.out.println(mCurrentPhotoPath);
+        return image;
+    }
+
+//    private String getPictureName() {
+//        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
+//        return "PlantPlacesImage" + timestamp + ".jpg";
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -115,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_account) {
             accountClicked();
@@ -126,11 +151,15 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_home) {
             homeClicked();
             return true;
+<<<<<<< HEAD
         } //else if (id == R.id.save_button){
             //saveClicked();
             //return true;
         //}
 
+=======
+        }
+>>>>>>> refs/remotes/origin/master
         return super.onOptionsItemSelected(item);
     }
 
@@ -157,18 +186,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        //if the user chooses OK, the code inside braces will execute
-        if (resultCode == RESULT_OK) {
-            if (requestCode == CAMERA_REQUEST) {
-//                //we are hearing back from the camera
-//                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
-//                //at this point, we have image from camera
-//                imgPic.setImageBitmap(cameraImage);
-            }
-        }
+    public static String getmCurrentPhotoPath() {
+        return mCurrentPhotoPath;
     }
 }
