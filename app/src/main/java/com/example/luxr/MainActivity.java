@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -151,22 +151,9 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_home) {
             homeClicked();
             return true;
-<<<<<<< HEAD
-        } //else if (id == R.id.save_button){
-            //saveClicked();
-            //return true;
-        //}
-
-=======
         }
->>>>>>> refs/remotes/origin/master
         return super.onOptionsItemSelected(item);
     }
-
-    //public void saveClicked(){
-    //    View v = new View(this);
-    //
-    //}
 
     public void homeClicked() {
         View v = new View(this);

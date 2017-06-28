@@ -29,4 +29,5 @@ dependencies {
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
     compile project(':openCVLibrary320')
+    compile 'com.google.android.gms:play-services-ads:11.0.1'
 }
