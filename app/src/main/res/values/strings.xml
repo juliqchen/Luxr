@@ -7,4 +7,7 @@
     <string name="last_name">Last Name</string>
     <string name="save_account">Save</string>
     <string name="welcome">Welcome to Luxr!</string>
+    <string name="favs_button">Favorites</string>
+    <string name="upload">Upload</string>
+    <string name="style_button">Style</string>
 </resources>
