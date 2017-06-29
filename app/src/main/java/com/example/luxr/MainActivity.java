@@ -19,8 +19,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-<<<<<<< HEAD
+import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.BaseLoaderCallback;
 import org.opencv.core.Core;
 import org.opencv.android.Utils;
 import org.opencv.core.CvType;
@@ -28,9 +29,6 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.imgcodecs.Imgcodecs;
 
-
-=======
->>>>>>> refs/remotes/origin/master
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -38,7 +36,9 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Mat rgba;
     private static final int CAMERA_REQUEST = 10;
+    private static final String TAG = "Luxr::MainActivity";
     private ImageView imgPic;
     private static String mCurrentPhotoPath;
 
@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         imgPic =(ImageView) findViewById(R.id.imgPic);
+
+        if (!OpenCVLoader.initDebug()) {
+            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_2_0, this, mLoaderCallback);
+        } else {
+            Log.d(TAG, "OpenCV library found inside package. Using it!");
+            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -154,15 +162,8 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
     private Bitmap detectEdges(Bitmap bitmap) {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
-        if (OpenCVLoader.initDebug()) {
-            System.out.println("success");
-        } else {
-            System.out.println("fail");
-        }
-
-        Mat rgba = new Mat();
+        rgba = new Mat();
         Utils.bitmapToMat(bitmap, rgba);
 
         Mat edges = new Mat(rgba.size(), CvType.CV_8UC1);
@@ -176,6 +177,24 @@ public class MainActivity extends AppCompatActivity {
         return resultBitmap;
     }
 
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                {
+                    Log.i(TAG, "OpenCV loaded successfully");
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                    Log.i(TAG, "OpenCV loading failed");
+                } break;
+            }
+        }
+    };
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -192,14 +211,10 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_home) {
             homeClicked();
             return true;
-<<<<<<< HEAD
         } //else if (id == R.id.save_button){
         //saveClicked();
         //return true;
         //}
-=======
-        }
->>>>>>> refs/remotes/origin/master
         return super.onOptionsItemSelected(item);
     }
 
