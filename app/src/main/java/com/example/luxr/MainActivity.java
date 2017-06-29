@@ -13,11 +13,22 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
+import org.opencv.android.Utils;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.imgcodecs.Imgcodecs;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -114,8 +125,9 @@ public class MainActivity extends AppCompatActivity {
             if (requestCode == CAMERA_REQUEST) {
 //                //we are hearing back from the camera
                 Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+                Bitmap imgEdge = detectEdges(cameraImage);
 //                //at this point, we have image from camera
-                imgPic.setImageBitmap(cameraImage);
+                imgPic.setImageBitmap(imgEdge);
 
             }
         }
@@ -139,8 +151,27 @@ public class MainActivity extends AppCompatActivity {
 //        return "PlantPlacesImage" + timestamp + ".jpg";
 //    }
 
-    private void detectEdges(Bitmap bitmap) {
-        Mat
+    private Bitmap detectEdges(Bitmap bitmap) {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+        if (OpenCVLoader.initDebug()) {
+            System.out.println("success");
+        } else {
+            System.out.println("fail");
+        }
+
+        Mat rgba = new Mat();
+        Utils.bitmapToMat(bitmap, rgba);
+
+        Mat edges = new Mat(rgba.size(), CvType.CV_8UC1);
+        Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
+        Imgproc.Canny(edges, edges, 80, 100);
+
+//        BitmapHelper.showBitmap(this, bitmap, imgPic);
+        Bitmap resultBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(edges, resultBitmap);
+//        BitmapHelper.showBitmap(this, resultBitmap, detectEdgesImageView);
+        return resultBitmap;
     }
 
     @Override
@@ -159,15 +190,10 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.action_home) {
             homeClicked();
             return true;
-<<<<<<< HEAD
         } //else if (id == R.id.save_button){
-            //saveClicked();
-            //return true;
+        //saveClicked();
+        //return true;
         //}
-
-=======
-        }
->>>>>>> refs/remotes/origin/master
         return super.onOptionsItemSelected(item);
     }
 
