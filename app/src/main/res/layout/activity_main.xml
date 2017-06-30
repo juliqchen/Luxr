@@ -21,18 +21,21 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:onClick="fabClicked"
-        app:srcCompat="@mipmap/ic_photo_camera_black_24dp" />
-
     <include
         layout="@layout/content_main"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent" />
+        android:id="@+id/include" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="fabClicked"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="top|left"
+        app:srcCompat="@mipmap/ic_photo_camera_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 /**
  * Created by juliachen on 6/23/17.
@@ -63,7 +62,7 @@ public class AccountActivity extends AppCompatActivity {
 
     public void settingsClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), SettingActivity.class);
+        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
         startActivity(intent);
     }
 

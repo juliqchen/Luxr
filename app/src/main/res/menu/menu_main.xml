@@ -8,18 +8,18 @@
         app:showAsAction="always" />
     <item
         android:icon="@mipmap/ic_favorite_black_24dp"
-        android:title="Favorite"
+        android:title="@string/favs_button"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_home"
         android:orderInCategory="100"
-        android:title="Home" />
+        android:title="@string/home" />
     <item
         android:id="@+id/action_account"
         android:orderInCategory="101"
-        android:title="Account" />
+        android:title="@string/action_account" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="102"
-        android:title="Settings" />
+        android:title="@string/action_settings" />
 </menu>

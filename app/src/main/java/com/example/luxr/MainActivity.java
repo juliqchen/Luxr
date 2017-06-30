@@ -1,9 +1,7 @@
 package com.example.luxr;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,12 +20,10 @@ import android.widget.ImageView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.BaseLoaderCallback;
-import org.opencv.core.Core;
 import org.opencv.android.Utils;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
-import org.opencv.imgcodecs.Imgcodecs;
 
 import java.io.File;
 import java.io.IOException;
@@ -232,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void settingsClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), SettingActivity.class);
+        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
         startActivity(intent);
     }
 
