@@ -31,6 +31,7 @@
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="129dp" />
 
+<<<<<<< HEAD
     <android.support.design.widget.TabLayout
         android:id="@+id/bottomTab"
         android:layout_width="367dp"
@@ -66,4 +67,6 @@
             android:text="@string/style_button" />
     </android.support.design.widget.TabLayout>
 
+=======
+>>>>>>> refs/remotes/origin/master
 </android.support.constraint.ConstraintLayout>

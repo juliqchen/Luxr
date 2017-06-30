@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BottomLayout {
 
     private Mat rgba;
     private static final int CAMERA_REQUEST = 10;
