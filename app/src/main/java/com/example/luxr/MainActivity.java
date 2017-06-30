@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends BottomLayout {
+public class MainActivity extends AppCompatActivity {
 
     private Mat rgba;
     private static final int CAMERA_REQUEST = 10;
@@ -47,7 +47,6 @@ public class MainActivity extends BottomLayout {
         setContentView(R.layout.activity_main);
 
         TabLayout bottomBar = (TabLayout) findViewById(R.id.bottomTab);
-
 
 
         if (Build.VERSION.SDK_INT < 16) {
