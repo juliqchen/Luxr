@@ -7,12 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class SettingActivity extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
+        setContentView(R.layout.activity_gallery);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class SettingActivity extends AppCompatActivity {
 
     public void settingsClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), SettingActivity.class);
+        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
         startActivity(intent);
     }
 }

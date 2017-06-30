@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AccountActivity"></activity>
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".GalleryActivity"></activity>
 
         <uses-feature android:name="android.hardware.camera"
             android:required="true" />

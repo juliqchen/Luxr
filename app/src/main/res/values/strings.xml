@@ -10,4 +10,7 @@
     <string name="favs_button">Favorites</string>
     <string name="upload">Upload</string>
     <string name="style_button">Style</string>
+    <string name="save_look">Save</string>
+    <string name="home">Home</string>
+    <string name="gallery">Gallery</string>
 </resources>
