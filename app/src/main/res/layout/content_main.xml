@@ -31,7 +31,7 @@
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="129dp" />
 
-<<<<<<< HEAD
+
     <android.support.design.widget.TabLayout
         android:id="@+id/bottomTab"
         android:layout_width="367dp"
@@ -39,10 +39,13 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPic">
+        app:layout_constraintTop_toBottomOf="@+id/imgPic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="1.0">
 
         <android.support.design.widget.TabItem
 
@@ -67,6 +70,5 @@
             android:text="@string/style_button" />
     </android.support.design.widget.TabLayout>
 
-=======
->>>>>>> refs/remotes/origin/master
+
 </android.support.constraint.ConstraintLayout>
