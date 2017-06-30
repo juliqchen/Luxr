@@ -4,7 +4,7 @@
     tools:context="com.example.luxr.MainActivity">
     <item
         android:icon="@mipmap/ic_save_black_24dp"
-        android:title="Save"
+        android:title="@string/save_look"
         app:showAsAction="always" />
     <item
         android:icon="@mipmap/ic_favorite_black_24dp"
