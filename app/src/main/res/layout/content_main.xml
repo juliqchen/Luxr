@@ -31,39 +31,4 @@
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="129dp" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/bottomTab"
-        android:layout_width="367dp"
-        android:layout_height="49dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintHorizontal_bias="0.956"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgPic">
-
-        <android.support.design.widget.TabItem
-
-            android:id="@+id/cameraTab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@mipmap/ic_photo_camera_black_24dp"
-            android:text="Left" />
-
-        <android.support.design.widget.TabItem
-            android:id="@+id/galleryTab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@mipmap/ic_favorite_black_24dp"
-            android:text="Center" />
-
-        <android.support.design.widget.TabItem
-            android:id="@+id/styleTab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@mipmap/ic_accessibility_black_24dp"
-            android:text="Right" />
-    </android.support.design.widget.TabLayout>
-
 </android.support.constraint.ConstraintLayout>
