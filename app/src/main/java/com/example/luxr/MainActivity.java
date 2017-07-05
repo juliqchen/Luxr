@@ -180,10 +180,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), AccountActivity.class);
         startActivity(intent);
     }
-
-    /*public void settingsClicked() {
-        View v = new View(this);
-        Intent intent = new Intent(v.getContext(), StyleActivity.class);
-        startActivity(intent);
-    }*/
 }

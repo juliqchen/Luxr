@@ -20,6 +20,7 @@ public class FileHand {
     private static ArrayList<String> FileNameStrings = new ArrayList<>();
     private static File myDir;
     private Context c;
+    private File[] mediaDirs;
 
     private String mCurrentPhotoPath;
     private String mCurrentPhotoName;
@@ -31,11 +32,19 @@ public class FileHand {
     }
 
     private File createImageFile() {
-        String root = Environment.getExternalStorageDirectory().getAbsolutePath().toString();
+        String root = Environment.getExternalStorageDirectory().getAbsolutePath().toString().trim();
         System.out.println("Media Store: " + c.getExternalMediaDirs().toString());
+        mediaDirs = c.getExternalMediaDirs();
 
-        myDir = new File(root + "/Luxr_images");
-        if (!myDir.isDirectory()) {
+        for (File a : mediaDirs) {
+            System.out.println("MSTORE: " + a.getPath());
+            System.out.println("AbsPath: " + a.getAbsolutePath());
+        }
+        if (myDir == null) {
+            myDir = new File(root + "/Luxr_images");
+        }
+
+        if (!myDir.exists()) {
             myDir.mkdirs();
             System.out.println("Directory Made: " + myDir.getAbsolutePath().toString());
         }
@@ -47,11 +56,14 @@ public class FileHand {
         //create an image file name with timestamp
         String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
         String imageFileName = "PlantPlacesImage" + timestamp + ".jpg";
-        mCurrentPhotoName = imageFileName;
+        mCurrentPhotoName = imageFileName.trim();
         FileNameStrings.add(mCurrentPhotoName);
 
         //put image in file
         File file = new File(myDir, imageFileName);
+        System.out.println("exists: " + file.exists());
+        System.out.println("directory: " + file.isDirectory());
+        System.out.println("read: " + file.canRead());
 
         System.out.println(file.getAbsoluteFile().toString());
 
@@ -65,7 +77,7 @@ public class FileHand {
             myDir.mkdirs();
             FileOutputStream out = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            //out.flush();
+            out.flush();
             out.close();
         } catch (Exception e) {
             e.printStackTrace();
