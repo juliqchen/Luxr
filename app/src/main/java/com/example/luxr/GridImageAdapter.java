@@ -2,12 +2,16 @@ package com.example.luxr;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
 
 /**
  * Created by juliachen on 6/30/17.
@@ -17,13 +21,13 @@ import android.widget.ImageView;
 public class GridImageAdapter extends BaseAdapter {
 
     private Activity activity;
-    private String[] data;
-    private String[] name;
+    private ArrayList<String> data;
+    private ArrayList<String> name;
 
     private static LayoutInflater inflater = null;
     //public ImageLoader imageLoader;
 
-    public GridImageAdapter(Activity galleryActivity, String[] FilePathStrings, String[] FileNameStrings) {
+    public GridImageAdapter(Activity galleryActivity, ArrayList<String> FilePathStrings, ArrayList<String> FileNameStrings) {
         this.activity = galleryActivity;
         this.data = FilePathStrings;
         this.name = FileNameStrings;
@@ -35,7 +39,7 @@ public class GridImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data.length;
+        return data.size();
     }
 
     @Override
@@ -61,9 +65,8 @@ public class GridImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-//        Bitmap bm = bitmapFromURI(itemList.get(position), 85, 85));
-//
-//        imageView.setImageBitmap(bm);
+        Bitmap myBitmap = BitmapFactory.decodeFile(data.get(i));
+        imageView.setImageBitmap(myBitmap);
         return imageView;
     }
 
