@@ -11,13 +11,16 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Gallery;
 import android.widget.ImageView;
 
 import org.opencv.android.LoaderCallbackInterface;
@@ -29,42 +32,49 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+
+import static android.R.attr.id;
+import static android.view.View.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Mat rgba;
     private static final int CAMERA_REQUEST = 10;
     private static final String TAG = "Luxr::MainActivity";
     private ImageView imgPic;
-    private static String mCurrentPhotoPath;
+    private String mCurrentPhotoPath;
+    private String mCurrentPhotoName;
+
+    private static File myDir;
+
+    public ArrayList<String> FilePathStrings;
+    public ArrayList<String> FileNameStrings;
+    public File[] listFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TabLayout bottomBar = (TabLayout) findViewById(R.id.bottomTab);
-
-
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-        setContentView(R.layout.activity_main);
         View decorView = getWindow().getDecorView();
         // Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        int uiOptions = SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
         // Remember that you should never show the action bar if the
         // status bar is hidden, so hide that too if necessary.
 //        ActionBar actionBar = getActionBar();
 //        actionBar.hide();
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         imgPic =(ImageView) findViewById(R.id.imgPic);
 
@@ -77,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Loading Camera", Snackbar.LENGTH_LONG)
@@ -85,6 +95,28 @@ public class MainActivity extends AppCompatActivity {
                 fabClicked(view);
             }
         });
+
+        createImageFile();
+        FilePathStrings = new ArrayList<String>();
+        FileNameStrings = new ArrayList<String>();
+
+//        TabLayout bottTab = (TabLayout) findViewById(R.id.bottomTab);
+//        bottTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        })
 
     }
 
@@ -98,34 +130,7 @@ public class MainActivity extends AppCompatActivity {
     //fabClicked v1.0.0
     public void fabClicked(View v) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        //not working from StackOverFlow
-//        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        String pictureName = getPictureName();
-//        File imageFile = new File(pictureDirectory, pictureName);
-//        Uri pictureUri = Uri.fromFile(imageFile);
-//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
-
-//        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-//            //create the file where the photo should go
-//            File photoFile = null;
-//            try {
-//                photoFile = createImageFile();
-//            } catch (IOException e) {
-//                System.out.println("Error: Image file was not created");
-//            }
-//
-//            //continue iff the File was successfully created
-//            if (photoFile != null) {
-//                Uri photoURI = Uri.fromFile(photoFile);
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-//                startActivityForResult(cameraIntent, CAMERA_REQUEST);
-//            }
-//        }
-
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
-
-
     }
 
     @Override
@@ -135,48 +140,59 @@ public class MainActivity extends AppCompatActivity {
         //if the user chooses OK, the code inside braces will execute
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST) {
-//                //we are hearing back from the camera
+                //we are hearing back from the camera
                 Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
                 Bitmap imgEdge = detectEdges(cameraImage);
-//                //at this point, we have image from camera
                 imgPic.setImageBitmap(imgEdge);
+                File savedImage = addImageFile(imgEdge);
 
+                listFile = myDir.listFiles();
+                FilePathStrings.add(mCurrentPhotoPath);
+                FileNameStrings.add(mCurrentPhotoName);
             }
         }
     }
 
-    private File createImageFile() throws IOException {
-        //create an image file name
-        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "PlantPlacesImage" + timestamp;
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-
-        //save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
-        System.out.println(mCurrentPhotoPath);
-        return image;
+    private File createImageFile() {
+        String root = Environment.getExternalStorageDirectory().toString();
+        myDir = new File(root + "/Luxr_images");
+        if (!myDir.isDirectory()) {
+            myDir.mkdirs();
+        }
+        return myDir;
     }
 
-//    private String getPictureName() {
-//        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
-//        return "PlantPlacesImage" + timestamp + ".jpg";
-//    }
+    private File addImageFile(Bitmap bitmap) {
+        //create an image file name with timestamp
+        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "PlantPlacesImage" + timestamp + ".jpg";
+        mCurrentPhotoName = imageFileName;
+
+        //put image in file
+        File file = new File(myDir, imageFileName);
+
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            System.out.println("File could not be saved as JPEG");
+        }
+
+        //save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = file.getAbsolutePath();
+        System.out.println(mCurrentPhotoPath);
+        return file;
+    }
+
+    public static File getMyDir() {
+        return myDir;
+    }
 
     private Bitmap detectEdges(Bitmap bitmap) {
-
-        rgba = new Mat();
-        Utils.bitmapToMat(bitmap, rgba);
-
-        Mat edges = new Mat(rgba.size(), CvType.CV_8UC1);
-        Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
-        Imgproc.Canny(edges, edges, 80, 100);
-
-//        BitmapHelper.showBitmap(this, bitmap, imgPic);
-        Bitmap resultBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), Bitmap.Config.ARGB_8888);
-        Utils.matToBitmap(edges, resultBitmap);
-//        BitmapHelper.showBitmap(this, resultBitmap, detectEdgesImageView);
-        return resultBitmap;
+        EdgeDetector detector = new EdgeDetector(bitmap);
+        return detector.currentImage;
     }
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -228,17 +244,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void accountClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), AccountActivity.class);
+        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
         startActivity(intent);
     }
 
     public void settingsClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
+        Intent intent = new Intent(v.getContext(), StyleActivity.class);
         startActivity(intent);
     }
 
-    public static String getmCurrentPhotoPath() {
+    public String getmCurrentPhotoPath() {
         return mCurrentPhotoPath;
     }
 }
