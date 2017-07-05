@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -155,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             styleClicked();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -182,11 +180,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), AccountActivity.class);
         startActivity(intent);
     }
-
-    /*public void settingsClicked() {
-        View v = new View(this);
-        Intent intent = new Intent(v.getContext(), StyleActivity.class);
-        startActivity(intent);
-    }*/
-
 }
