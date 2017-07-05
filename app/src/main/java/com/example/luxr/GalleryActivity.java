@@ -1,9 +1,8 @@
 package com.example.luxr;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,18 +46,6 @@ public class GalleryActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -72,20 +59,37 @@ public class GalleryActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_account) {
             accountClicked();
             return true;
-        } else if (id == R.id.action_settings) {
+        } /*else if (id == R.id.action_settings) {
             settingsClicked();
             return true;
-        } else if (id == R.id.action_home) {
+        }*/ else if (id == R.id.action_home) {
             homeClicked();
+            return true;
+        } else if (id == R.id.action_gallery){
+            galleryClicked();
+            return true;
+        } else if (id == R.id.action_style){
+            styleClicked();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void styleClicked(){
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), StyleActivity.class);
+        startActivity(intent);
+    }
+
+    public void galleryClicked(){
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(),GalleryActivity.class);
+        startActivity(intent);
     }
 
     public void homeClicked() {
@@ -100,9 +104,9 @@ public class GalleryActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void settingsClicked() {
+    /*public void settingsClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
+        Intent intent = new Intent(v.getContext(), StyleActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
