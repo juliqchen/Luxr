@@ -8,38 +8,27 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Gallery;
 import android.widget.ImageView;
 
+import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.Utils;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
-import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static android.R.attr.id;
-import static android.view.View.*;
+import static android.view.View.OnClickListener;
+import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -223,17 +212,33 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_account) {
             accountClicked();
             return true;
-        } else if (id == R.id.action_settings) {
+        } /*else if (id == R.id.action_settings) {
             settingsClicked();
             return true;
-        } else if (id == R.id.action_home) {
+        }*/ else if (id == R.id.action_home) {
             homeClicked();
             return true;
-        } //else if (id == R.id.save_button){
-        //saveClicked();
-        //return true;
-        //}
+        } else if (id == R.id.action_gallery){
+            galleryClicked();
+            return true;
+        } else if (id == R.id.action_style){
+            styleClicked();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void styleClicked(){
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), StyleActivity.class);
+        startActivity(intent);
+    }
+
+    public void galleryClicked(){
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(),GalleryActivity.class);
+        startActivity(intent);
     }
 
     public void homeClicked() {
@@ -244,15 +249,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void accountClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
+        Intent intent = new Intent(v.getContext(), AccountActivity.class);
         startActivity(intent);
     }
 
-    public void settingsClicked() {
+    /*public void settingsClicked() {
         View v = new View(this);
         Intent intent = new Intent(v.getContext(), StyleActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     public String getmCurrentPhotoPath() {
         return mCurrentPhotoPath;

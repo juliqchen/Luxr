@@ -10,6 +10,7 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/action_upload"
         android:icon="@mipmap/ic_photo_camera_black_24dp"
         android:title="@string/upload"
         app:showAsAction="always" />
