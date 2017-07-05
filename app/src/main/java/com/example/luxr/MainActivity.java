@@ -21,13 +21,6 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.FileHandler;
-
 import static android.view.View.OnClickListener;
 import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
 

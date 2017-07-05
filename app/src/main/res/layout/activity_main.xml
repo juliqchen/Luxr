@@ -16,7 +16,6 @@
         android:layout_gravity="top|center_horizontal"
         android:layout_margin="@dimen/fab_margin"
 
-
         android:onClick="fabClicked"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|center_horizontal"
