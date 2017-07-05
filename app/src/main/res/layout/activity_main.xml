@@ -40,4 +40,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+<<<<<<< HEAD
+=======
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="52dp"
+        android:layout_height="54dp"
+
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_margin="@dimen/fab_margin"
+
+
+        android:onClick="fabClicked"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="top|center_horizontal"
+        app:srcCompat="@mipmap/ic_photo_camera_black_24dp" />
+
+>>>>>>> refs/remotes/origin/master
 </android.support.design.widget.CoordinatorLayout>
