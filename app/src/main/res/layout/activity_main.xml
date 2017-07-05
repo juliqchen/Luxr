@@ -32,13 +32,13 @@
         android:layout_width="67dp"
         android:layout_height="81dp"
 
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_gravity="top|center_horizontal"
         android:layout_margin="@dimen/fab_margin"
 
 
         android:onClick="fabClicked"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="top|center_horizontal"
+        app:layout_anchorGravity="bottom|center_horizontal"
         app:srcCompat="@mipmap/ic_photo_camera_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
