@@ -11,13 +11,12 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import java.io.File;
-
-import static com.example.luxr.MainActivity.getMyDir;
+import java.util.ArrayList;
 
 public class GalleryActivity extends AppCompatActivity {
 
-    private String[] FilePathStrings;
-    private String[] FileNameStrings;
+    private ArrayList<String> FilePathStrings;
+    private ArrayList<String> FileNameStrings;
     private File[] listFile;
     GridView grid;
     GridImageAdapter adapter;
@@ -28,18 +27,10 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        file = MainActivity.getMyDir();
-
-        if (file.isDirectory()) {
-            listFile = getMyDir().listFiles();
-            FilePathStrings = new String[listFile.length];
-            FileNameStrings = new String[listFile.length];
-
-            for (int i = 0; i < listFile.length; i++) {
-                FilePathStrings[i] = listFile[i].getAbsolutePath();
-                FileNameStrings[i] = listFile[i].getName();
-            }
-        }
+        file = FileHand.getMyDir();
+        FilePathStrings = FileHand.getFilePathStrings();
+        FileNameStrings = FileHand.getFileNameStrings();
+        listFile = file.listFiles();
 
         grid = (GridView) findViewById(R.id.galleryGrid);
         adapter = new GridImageAdapter(this, FilePathStrings, FileNameStrings);

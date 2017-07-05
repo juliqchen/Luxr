@@ -5,7 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.luxr.MainActivity"
-    android:screenOrientation="portrait" >
+    android:screenOrientation="portrait"
+    android:id="@+id/main_view_id">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="67dp"
+        android:layout_height="81dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_margin="@dimen/fab_margin"
+        android:onClick="fabClicked"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|center_horizontal"
+        app:srcCompat="@mipmap/ic_photo_camera_black_24dp" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,23 +38,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="67dp"
-        android:layout_height="81dp"
-        android:layout_gravity="top|center_horizontal"
-        android:layout_margin="@dimen/fab_margin"
-        android:onClick="fabClicked"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|center_horizontal"
-        app:srcCompat="@mipmap/ic_photo_camera_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
 

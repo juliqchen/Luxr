@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.luxr.GalleryActivity"
     tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:layout_editor_absoluteX="0dp"
+    android:id="@+id/gallery_view_id">
 
     <TextView
 
@@ -33,16 +34,5 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="12dp" />
 
-    <!--<ScrollView-->
-        <!--android:layout_width="371dp"-->
-        <!--android:layout_height="454dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--app:layout_constraintVertical_bias="0.907">-->
-
-    <!--</ScrollView>-->
 
 </android.support.constraint.ConstraintLayout>

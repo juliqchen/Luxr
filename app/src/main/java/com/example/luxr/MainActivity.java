@@ -26,6 +26,7 @@ import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.FileHandler;
 
 import static android.view.View.OnClickListener;
 import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -35,20 +36,13 @@ public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 10;
     private static final String TAG = "Luxr::MainActivity";
     private ImageView imgPic;
-    private String mCurrentPhotoPath;
-    private String mCurrentPhotoName;
-
-    private static File myDir;
-
-    public ArrayList<String> FilePathStrings;
-    public ArrayList<String> FileNameStrings;
-    public File[] listFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //DON'T TOUCH THIS,  DON'T KNOW WHAT IT DOES
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -57,16 +51,9 @@ public class MainActivity extends AppCompatActivity {
         // Hide the status bar.
         int uiOptions = SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-        // Remember that you should never show the action bar if the
-        // status bar is hidden, so hide that too if necessary.
-//        ActionBar actionBar = getActionBar();
-//        actionBar.hide();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        imgPic =(ImageView) findViewById(R.id.imgPic);
-
+        //Run OpenCV on startup, ONCE
+        //the call from the constructor allows for one time run at start-up
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_2_0, this, mLoaderCallback);
@@ -74,6 +61,36 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
+
+        //populate the Main Camera View
+        onCreateViewSetup();
+    }
+
+    //creates mLoaderCallback for OpenCVLoader
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                {
+                    Log.i(TAG, "OpenCV loaded successfully");
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                    Log.i(TAG, "OpenCV loading failed");
+                } break;
+            }
+        }
+    };
+
+    //populate the Main Camera View
+    public void onCreateViewSetup() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        imgPic =(ImageView) findViewById(R.id.imgPic);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new OnClickListener() {
@@ -84,36 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 fabClicked(view);
             }
         });
-
-        createImageFile();
-        FilePathStrings = new ArrayList<String>();
-        FileNameStrings = new ArrayList<String>();
-
-//        TabLayout bottTab = (TabLayout) findViewById(R.id.bottomTab);
-//        bottTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        })
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     //fabClicked v1.0.0
@@ -133,50 +120,10 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
                 Bitmap imgEdge = detectEdges(cameraImage);
                 imgPic.setImageBitmap(imgEdge);
-                File savedImage = addImageFile(imgEdge);
 
-                listFile = myDir.listFiles();
-                FilePathStrings.add(mCurrentPhotoPath);
-                FileNameStrings.add(mCurrentPhotoName);
+                FileHand fileHand = new FileHand(imgEdge, this.getApplicationContext());
             }
         }
-    }
-
-    private File createImageFile() {
-        String root = Environment.getExternalStorageDirectory().toString();
-        myDir = new File(root + "/Luxr_images");
-        if (!myDir.isDirectory()) {
-            myDir.mkdirs();
-        }
-        return myDir;
-    }
-
-    private File addImageFile(Bitmap bitmap) {
-        //create an image file name with timestamp
-        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "PlantPlacesImage" + timestamp + ".jpg";
-        mCurrentPhotoName = imageFileName;
-
-        //put image in file
-        File file = new File(myDir, imageFileName);
-
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            System.out.println("File could not be saved as JPEG");
-        }
-
-        //save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = file.getAbsolutePath();
-        System.out.println(mCurrentPhotoPath);
-        return file;
-    }
-
-    public static File getMyDir() {
-        return myDir;
     }
 
     private Bitmap detectEdges(Bitmap bitmap) {
@@ -184,24 +131,14 @@ public class MainActivity extends AppCompatActivity {
         return detector.currentImage;
     }
 
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+    //menu stuff
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                } break;
-                default:
-                {
-                    super.onManagerConnected(status);
-                    Log.i(TAG, "OpenCV loading failed");
-                } break;
-            }
-        }
-    };
-    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -236,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void galleryClicked(){
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(),GalleryActivity.class);
+        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
         startActivity(intent);
     }
 
@@ -258,7 +195,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }*/
 
+<<<<<<< HEAD
     public String getCurrentPhotoPath() {
         return mCurrentPhotoPath;
     }
+=======
+>>>>>>> refs/remotes/origin/master
 }
