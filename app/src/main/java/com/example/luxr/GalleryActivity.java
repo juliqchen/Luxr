@@ -3,17 +3,70 @@ package com.example.luxr;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
+
+import java.io.File;
+
+import static com.example.luxr.MainActivity.getMyDir;
 
 public class GalleryActivity extends AppCompatActivity {
+
+    private String[] FilePathStrings;
+    private String[] FileNameStrings;
+    private File[] listFile;
+    GridView grid;
+    GridImageAdapter adapter;
+    File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+
+        file = MainActivity.getMyDir();
+
+        if (file.isDirectory()) {
+            listFile = getMyDir().listFiles();
+            FilePathStrings = new String[listFile.length];
+            FileNameStrings = new String[listFile.length];
+
+            for (int i = 0; i < listFile.length; i++) {
+                FilePathStrings[i] = listFile[i].getAbsolutePath();
+                FileNameStrings[i] = listFile[i].getName();
+            }
+        }
+
+        grid = (GridView) findViewById(R.id.galleryGrid);
+        adapter = new GridImageAdapter(this, FilePathStrings, FileNameStrings);
+        grid.setAdapter(adapter);
+
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(GalleryActivity.this, "" + 100, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
