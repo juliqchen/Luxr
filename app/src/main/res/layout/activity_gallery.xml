@@ -8,29 +8,30 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
+
+        android:id="@+id/textView"
+        android:layout_width="198dp"
+        android:layout_height="62dp"
+        android:text="@string/gallery"
+        android:layout_marginTop="6dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <GridView
         android:id="@+id/galleryGrid"
-        android:layout_width="392dp"
-        android:layout_height="419dp"
+        android:layout_width="363dp"
+        android:layout_height="418dp"
+        android:layout_marginTop="77dp"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="84dp" />
-
-    <TextView
-
-        android:id="@+id/textView"
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:text="Gallery"
-        android:layout_marginTop="6dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        tools:layout_editor_absoluteX="11dp" />
 
     <!--<ScrollView-->
         <!--android:layout_width="371dp"-->
