@@ -11,8 +11,8 @@
     <TextView
 
         android:id="@+id/textView"
-        android:layout_width="198dp"
-        android:layout_height="62dp"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
         android:text="@string/gallery"
         android:layout_marginTop="6dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -21,9 +21,9 @@
 
     <GridView
         android:id="@+id/galleryGrid"
-        android:layout_width="363dp"
-        android:layout_height="418dp"
-        android:layout_marginTop="77dp"
+        android:layout_width="361dp"
+        android:layout_height="452dp"
+        android:layout_marginTop="57dp"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
@@ -31,7 +31,7 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="11dp" />
+        tools:layout_editor_absoluteX="12dp" />
 
     <!--<ScrollView-->
         <!--android:layout_width="371dp"-->

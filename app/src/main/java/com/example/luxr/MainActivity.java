@@ -225,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
             styleClicked();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -259,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }*/
 
-    public String getmCurrentPhotoPath() {
+    public String getCurrentPhotoPath() {
         return mCurrentPhotoPath;
     }
 }
