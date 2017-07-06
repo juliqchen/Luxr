@@ -13,7 +13,7 @@
         android:layout_width="67dp"
         android:layout_height="81dp"
         android:layout_gravity="top|center_horizontal"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_margin="@dimen/fab_margin" />
 
     <include
         android:id="@+id/include"
