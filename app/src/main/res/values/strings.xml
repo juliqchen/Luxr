@@ -14,4 +14,6 @@
     <string name="home">Home</string>
     <string name="gallery">Gallery</string>
     <string name="styleImage">Style Image</string>
+    <string name="instructions">Easily style yourself with Luxe! Find navigation in the top bar. Upload single articles of clothing against a white background for best effect. Find all uploads saved in the Gallery.</string>
+    <string name="welcome_msg">Welcome to Luxe!</string>
 </resources>

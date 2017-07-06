@@ -8,15 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 /**
- * Created by juliachen on 6/23/17.
+ * Created by jenniferhu on 7/6/17.
  */
 
-public class AccountActivity extends AppCompatActivity {
-
+public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_home);
     }
 
     @Override
@@ -81,6 +80,5 @@ public class AccountActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), MainActivity.class);
         startActivity(intent);
     }
-
 
 }
