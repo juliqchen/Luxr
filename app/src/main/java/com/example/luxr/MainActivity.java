@@ -1,9 +1,12 @@
 package com.example.luxr;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +22,14 @@ import android.widget.ImageView;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import static android.view.View.OnClickListener;
 import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -112,6 +123,33 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
                 Bitmap imgEdge = detectEdges(cameraImage);
                 imgPic.setImageBitmap(imgEdge);
+
+                File gallery = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/GAY");
+                gallery.mkdirs();
+                File feel = new File(gallery, "youregayasfuck.JPEG");
+                try {
+                    feel.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                FileOutputStream out = null;
+                try {
+                    out = new FileOutputStream(feel);
+                    imgEdge.compress(Bitmap.CompressFormat.JPEG, 90, out);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (out != null) {
+                            out.flush();
+                            out.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                System.out.println("File saved as JPEG");
 
                 FileHand fileHand = new FileHand(imgEdge, this.getApplicationContext());
             }

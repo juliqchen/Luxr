@@ -41,10 +41,6 @@ public class FileHand {
             myDir.mkdirs();
             System.out.println("Directory Made: " + myDir.getAbsolutePath().toString());
         }
-        System.out.println("YAHOO: " + myDir.exists());
-        File pic = new File(myDir, "yellojello");
-
-        System.out.println("YellowJello: " + pic.exists());
 
         File imgFile = new File(myDir, createFileName());
         try {
@@ -53,16 +49,12 @@ public class FileHand {
             e.printStackTrace();
         }
 
-        System.out.println("exists: " + imgFile.exists());
-        System.out.println("directory: " + imgFile.isDirectory());
-        System.out.println("read: " + imgFile.canRead());
-        System.out.println("write: " + imgFile.canWrite());
-
         try {
             FileOutputStream out = new FileOutputStream(imgFile);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
+            System.out.println("File saved as JPEG");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -73,21 +65,20 @@ public class FileHand {
 
         System.out.println("mCPP: " + mCurrentPhotoPath);
 
-        //MediaScanner
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-        {
-            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-            File f = new File(myDir.getAbsolutePath().toString());
-            Uri contentUri = Uri.fromFile(f);
-            mediaScanIntent.setData(contentUri);
-            c.sendBroadcast(mediaScanIntent);
-        }
-        else
-        {
-            c.sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
+        for (String path: FilePathStrings) {
+            scanMedia(path);
+            System.out.println("File Scanned");
         }
 
         return imgFile;
+    }
+
+    private void scanMedia(String path) {
+        File file = new File(path);
+        Uri uri = Uri.fromFile(file);
+        Intent scanFileIntent = new Intent(
+                Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        c.sendBroadcast(scanFileIntent);
     }
 
     private String createFileName() {
