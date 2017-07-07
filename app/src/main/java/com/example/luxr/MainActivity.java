@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 10;
     private static final String TAG = "Luxr::MainActivity";
     private ImageView imgPic;
+    private ImageView contourImg;
+    Bitmap contourImage;
+    Bitmap currentImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        imgPic =(ImageView) findViewById(R.id.imgPic);
+        imgPic = (ImageView) findViewById(R.id.imgPic);
+        contourImg = (ImageView) findViewById(R.id.contourImg);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new OnClickListener() {
@@ -123,33 +127,33 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
                 Bitmap imgEdge = detectEdges(cameraImage);
                 imgPic.setImageBitmap(imgEdge);
-
-                File gallery = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/GAY");
-                gallery.mkdirs();
-                File feel = new File(gallery, "youregayasfuck.JPEG");
-                try {
-                    feel.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                FileOutputStream out = null;
-                try {
-                    out = new FileOutputStream(feel);
-                    imgEdge.compress(Bitmap.CompressFormat.JPEG, 90, out);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        if (out != null) {
-                            out.flush();
-                            out.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                System.out.println("File saved as JPEG");
+                contourImg.setImageBitmap(contourImage);
+//                File gallery = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/GAY");
+//                gallery.mkdirs();
+//                File feel = new File(gallery, "youregayasfuck.JPEG");
+//                try {
+//                    feel.createNewFile();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                FileOutputStream out = null;
+//                try {
+//                    out = new FileOutputStream(feel);
+//                    imgEdge.compress(Bitmap.CompressFormat.JPEG, 90, out);
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                } finally {
+//                    try {
+//                        if (out != null) {
+//                            out.flush();
+//                            out.close();
+//                        }
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//                System.out.println("File saved as JPEG");
 
                 FileHand fileHand = new FileHand(imgEdge, this.getApplicationContext());
             }
@@ -158,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Bitmap detectEdges(Bitmap bitmap) {
         EdgeDetector detector = new EdgeDetector(bitmap);
+        contourImage = detector.contourImage;
+        currentImage = detector.currentImage;
         return detector.currentImage;
     }
 
