@@ -128,32 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap imgEdge = detectEdges(cameraImage);
                 imgPic.setImageBitmap(imgEdge);
                 contourImg.setImageBitmap(contourImage);
-//                File gallery = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/GAY");
-//                gallery.mkdirs();
-//                File feel = new File(gallery, "youregayasfuck.JPEG");
-//                try {
-//                    feel.createNewFile();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                FileOutputStream out = null;
-//                try {
-//                    out = new FileOutputStream(feel);
-//                    imgEdge.compress(Bitmap.CompressFormat.JPEG, 90, out);
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                } finally {
-//                    try {
-//                        if (out != null) {
-//                            out.flush();
-//                            out.close();
-//                        }
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//                System.out.println("File saved as JPEG");
 
                 FileHand fileHand = new FileHand(imgEdge, this.getApplicationContext());
             }
