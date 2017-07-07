@@ -5,15 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.luxr.MainActivity"
-    android:screenOrientation="portrait"
-    android:id="@+id/main_view_id">
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="67dp"
-        android:layout_height="81dp"
-        android:layout_gravity="top|center_horizontal"
-        android:layout_margin="@dimen/fab_margin" />
+    android:screenOrientation="portrait">
 
     <include
         android:id="@+id/include"
@@ -34,6 +26,16 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:src="@mipmap/ic_file_upload_black_24dp"
+        android:layout_width="67dp"
+        android:layout_height="81dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|center_horizontal" />
 
 </android.support.design.widget.CoordinatorLayout>
 

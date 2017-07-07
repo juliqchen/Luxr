@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_view_id">
+
+    <TextView
+        android:id="@+id/welcome_msg"
+        android:layout_width="357dp"
+        android:layout_height="68dp"
+        android:text="@string/welcome_msg"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        tools:layout_editor_absoluteX="14dp"
+        android:textSize="42sp"
+        tools:text="@string/welcome_msg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="27dp" />
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="350dp"
+        android:layout_height="183dp"
+        android:text="@string/instructions"
+        android:textSize="20sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:layout_editor_absoluteX="17dp"
+        tools:text="@string/instructions"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="111dp" />
+
+</android.support.constraint.ConstraintLayout>

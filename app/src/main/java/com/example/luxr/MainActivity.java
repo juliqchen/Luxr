@@ -185,10 +185,10 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_account) {
             accountClicked();
             return true;
-        } /*else if (id == R.id.action_settings) {
-            settingsClicked();
+        } else if (id == R.id.action_upload) {
+            uploadClicked();
             return true;
-        }*/ else if (id == R.id.action_home) {
+        } else if (id == R.id.action_home) {
             homeClicked();
             return true;
         } else if (id == R.id.action_gallery){
@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void homeClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        Intent intent = new Intent(v.getContext(), HomeActivity.class);
         startActivity(intent);
     }
 
@@ -224,4 +224,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), AccountActivity.class);
         startActivity(intent);
     }
+
+    public void uploadClicked() {
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        startActivity(intent);
+    }
+
 }
