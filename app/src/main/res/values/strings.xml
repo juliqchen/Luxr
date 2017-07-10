@@ -38,4 +38,5 @@
     <string name="color_white">White</string>
     <string name="color_page">Color</string>
     <string name="type_page">Type</string>
+    <string name="next_button">next</string>
 </resources>
