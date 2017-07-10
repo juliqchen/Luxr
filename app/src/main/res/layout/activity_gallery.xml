@@ -15,16 +15,17 @@
         android:layout_width="150dp"
         android:layout_height="38dp"
         android:text="@string/gallery"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <GridView
         android:id="@+id/galleryGrid"
         android:layout_width="367dp"
         android:layout_height="451dp"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="67dp"
         android:columnWidth="100dp"
         android:gravity="center"
         android:horizontalSpacing="8dp"
@@ -36,8 +37,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        tools:layout_editor_absoluteY="58dp" />
+        app:layout_constraintHorizontal_bias="1.0" />
 
 
 </android.support.constraint.ConstraintLayout>
