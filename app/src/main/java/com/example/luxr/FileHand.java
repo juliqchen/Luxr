@@ -50,10 +50,10 @@ public class FileHand {
 
         try {
             FileOutputStream out = new FileOutputStream(imgFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
-            System.out.println("File saved as JPEG");
+            System.out.println("File saved as PNG");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,7 +83,7 @@ public class FileHand {
     private String createFileName() {
         //create an image file name with timestamp
         String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
-        imageFileName = "PlantPlacesImage" + timestamp + ".jpg";
+        imageFileName = "PlantPlacesImage" + timestamp + ".png";
         mCurrentPhotoName = imageFileName.trim();
         FileNameStrings.add(mCurrentPhotoName);
         return imageFileName;

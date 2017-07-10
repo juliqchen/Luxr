@@ -61,7 +61,6 @@ public class EdgeDetector {
             }
         }
 
-
         //Bitmap
         Bitmap resultOtherBitmap = Bitmap.createBitmap(drawMat.cols(), drawMat.rows(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(drawMat, resultOtherBitmap);
