@@ -93,7 +93,7 @@ public class GalleryActivity extends AppCompatActivity {
 
     public void homeClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), HomeActivity.class);
+        Intent intent = new Intent(v.getContext(), CameraActivity.class);
         startActivity(intent);
     }
 
