@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="150dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/type_page"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/type_page" />
+
+    <Button
+        android:id="@+id/accessories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_accessories"
+        tools:text="@string/type_accessories"
+        android:layout_marginStart="67dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="103dp" />
+
+    <Button
+        android:id="@+id/bottoms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_bottoms"
+        tools:text="@string/type_bottoms"
+        app:layout_constraintLeft_toRightOf="@+id/accessories"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="103dp"
+        app:layout_constraintHorizontal_bias="0.406" />
+
+    <Button
+        android:id="@+id/jumpsuits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_jumpsuits"
+        tools:text="@string/type_jumpsuits"
+        android:layout_marginStart="67dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="172dp" />
+
+    <Button
+        android:id="@+id/jackets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_jackets"
+        tools:text="@string/type_jackets"
+        app:layout_constraintLeft_toRightOf="@+id/jumpsuits"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="172dp" />
+
+    <Button
+        android:id="@+id/dresses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_dresses"
+        tools:text="@string/type_dresses"
+        android:layout_marginStart="45dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="252dp" />
+
+    <Button
+        android:id="@+id/shoes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_shoes"
+        tools:text="@string/type_shoes"
+        app:layout_constraintLeft_toRightOf="@+id/dresses"
+        android:layout_marginStart="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="252dp" />
+
+    <Button
+        android:id="@+id/tops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_tops"
+        tools:text="@string/type_tops"
+        app:layout_constraintLeft_toRightOf="@+id/shoes"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.224"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="252dp" />
+
+</android.support.constraint.ConstraintLayout>

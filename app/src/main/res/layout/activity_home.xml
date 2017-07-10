@@ -12,11 +12,12 @@
         android:layout_height="68dp"
         android:text="@string/welcome_msg"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        tools:layout_editor_absoluteX="27dp"
         android:textSize="42sp"
         tools:text="@string/welcome_msg"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="27dp" />
+        android:layout_marginTop="26dp"
+        android:layout_marginStart="25dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/instructions"
@@ -25,9 +26,10 @@
         android:text="@string/instructions"
         android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:layout_editor_absoluteX="27dp"
         tools:text="@string/instructions"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="111dp" />
+        android:layout_marginTop="101dp"
+        android:layout_marginStart="27dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

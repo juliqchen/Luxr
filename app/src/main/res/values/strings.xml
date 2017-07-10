@@ -16,4 +16,26 @@
     <string name="styleImage">Style Image</string>
     <string name="instructions">Easily style yourself with Luxe! Find navigation in the top bar. Upload single articles of clothing against a white background for best effect. Find all uploads saved in the Gallery.</string>
     <string name="welcome_msg">Welcome to Luxe!</string>
+    <string name="type_tops">Tops</string>
+    <string name="type_bottoms">Bottoms</string>
+    <string name="type_jackets">Jackets</string>
+    <string name="type_dresses">Dresses</string>
+    <string name="type_jumpsuits">Jumpsuits</string>
+    <string name="type_shoes">Shoes</string>
+    <string name="type_accessories">Accessories</string>
+    <string name="color_red">Red</string>
+    <string name="color_yellow">Yellow</string>
+    <string name="type_orange">Orange</string>
+    <string name="color_blue">Blue</string>
+    <string name="color_green">Green</string>
+    <string name="color_purple">Purple</string>
+    <string name="color_gray">Gray</string>
+    <string name="color_brown">Brown</string>
+    <string name="color_black">Black</string>
+    <string name="color_gold">Gold</string>
+    <string name="color_silver">Silver</string>
+    <string name="color_pink">Pink</string>
+    <string name="color_white">White</string>
+    <string name="color_page">Color</string>
+    <string name="type_page">Type</string>
 </resources>

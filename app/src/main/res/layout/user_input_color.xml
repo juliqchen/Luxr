@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_black"
+        tools:text="@string/color_black"
+        android:layout_marginStart="31dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="81dp" />
+
+    <Button
+        android:id="@+id/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_blue"
+        tools:text="@string/color_blue"
+        app:layout_constraintLeft_toRightOf="@+id/black"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="81dp" />
+
+    <Button
+        android:id="@+id/brown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_brown"
+        tools:text="@string/color_brown"
+        app:layout_constraintLeft_toRightOf="@+id/blue"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="81dp"
+        app:layout_constraintHorizontal_bias="0.323" />
+
+    <Button
+        android:id="@+id/red"
+        android:layout_width="74dp"
+        android:layout_height="48dp"
+        android:text="@string/color_red"
+        tools:text="@string/color_red"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/purple"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="256dp"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <Button
+        android:id="@+id/yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_yellow"
+        tools:text="@string/color_yellow"
+        app:layout_constraintLeft_toRightOf="@+id/silver"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="196dp" />
+
+    <Button
+        android:id="@+id/orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type_orange"
+        tools:text="@string/type_orange"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="256dp" />
+
+    <Button
+        android:id="@+id/green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_green"
+        tools:text="@string/color_green"
+        android:layout_marginStart="31dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="147dp" />
+
+    <Button
+        android:id="@+id/purple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_purple"
+        tools:text="@string/color_purple"
+        app:layout_constraintLeft_toRightOf="@+id/pink"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="256dp" />
+
+    <Button
+        android:id="@+id/pink"
+        android:layout_width="68dp"
+        android:layout_height="48dp"
+        android:text="@string/color_pink"
+        tools:text="@string/color_pink"
+        app:layout_constraintLeft_toRightOf="@+id/orange"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="256dp" />
+
+    <Button
+        android:id="@+id/gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_gray"
+        tools:text="@string/color_gray"
+        app:layout_constraintLeft_toRightOf="@+id/green"
+        android:layout_marginStart="29dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="147dp" />
+
+    <Button
+        android:id="@+id/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_white"
+        tools:text="@string/color_white"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/yellow"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="196dp"
+        app:layout_constraintHorizontal_bias="0.59" />
+
+    <Button
+        android:id="@+id/gold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_gold"
+        tools:text="@string/color_gold"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/gray"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="147dp"
+        app:layout_constraintHorizontal_bias="0.181" />
+
+    <Button
+        android:id="@+id/silver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/color_silver"
+        tools:text="@string/color_silver"
+        android:layout_marginStart="31dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="196dp" />
+
+    <TextView
+        android:id="@+id/color"
+        android:layout_width="161dp"
+        android:layout_height="42dp"
+        android:text="@string/color_page"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:text="@string/color_page"
+        android:layout_marginStart="31dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
+</android.support.constraint.ConstraintLayout>
