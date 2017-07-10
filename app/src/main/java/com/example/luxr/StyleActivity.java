@@ -1,22 +1,43 @@
 package com.example.luxr;
 
+import android.app.ListActivity;
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;;
+import android.view.View;
+
+;
 
 /**
  * Created by jenniferhu on 6/30/17.
  */
 
-public class StyleActivity extends AppCompatActivity {
+public class StyleActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style);
+        handleIntent(getIntent());
+    }
+
+    public void onNewIntent(Intent intent){
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent){
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            doSearch(query);
+        }
+    }
+
+    private void doSearch(String query){
+
+        //
     }
 
     @Override
@@ -32,6 +53,7 @@ public class StyleActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_account) {
             accountClicked();
@@ -81,6 +103,4 @@ public class StyleActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), MainActivity.class);
         startActivity(intent);
     }
-
-
 }

@@ -33,7 +33,6 @@ public class CameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         onCreateViewSetup();
-
         //Run OpenCV on startup, ONCE
         //the call from the constructor allows for one time run at start-up
         if (!OpenCVLoader.initDebug()) {
