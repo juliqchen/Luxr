@@ -2,33 +2,25 @@ package com.example.luxr;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Camera;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
-
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import static android.view.View.OnClickListener;
-import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -41,14 +33,6 @@ public class CameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         onCreateViewSetup();
-
-        //DON'T TOUCH THIS,  DON'T KNOW WHAT IT DOES
-//        if (Build.VERSION.SDK_INT < 16) {
-//            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        }
-
-        System.out.println("new window created");
 
         //Run OpenCV on startup, ONCE
         //the call from the constructor allows for one time run at start-up
