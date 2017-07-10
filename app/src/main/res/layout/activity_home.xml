@@ -12,7 +12,7 @@
         android:layout_height="68dp"
         android:text="@string/welcome_msg"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteX="27dp"
         android:textSize="42sp"
         tools:text="@string/welcome_msg"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,12 +20,12 @@
 
     <TextView
         android:id="@+id/instructions"
-        android:layout_width="350dp"
-        android:layout_height="183dp"
+        android:layout_width="331dp"
+        android:layout_height="162dp"
         android:text="@string/instructions"
         android:textSize="20sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteX="27dp"
         tools:text="@string/instructions"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="111dp" />
