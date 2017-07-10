@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 
 import java.io.File;
@@ -100,10 +99,6 @@ public class FileHand {
 
     public static ArrayList<String> getFileNameStrings() {
         return FileNameStrings;
-    }
-
-    public static File[] getListFile() {
-        return myDir.listFiles();
     }
 
 }

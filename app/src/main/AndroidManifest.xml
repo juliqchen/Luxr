@@ -10,11 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+<<<<<<< HEAD
             android:name=".MainActivity"
             android:label="@string/app_name" >
+=======
+            android:name=".HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.AppBarOverlay">
+>>>>>>> refs/remotes/origin/master
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -22,6 +27,13 @@
         <activity android:name=".CameraActivity"></activity>
         <activity android:name=".StyleActivity"></activity>
         <activity android:name=".GalleryActivity"></activity>
+        <activity android:name=".StyleActivity">
+            <!-- enable the search dialog to send searches to SearchableActivity -->
+            <meta-data android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
+        </activity>
+
+
 
         <uses-feature android:name="android.hardware.camera"
             android:required="true" />

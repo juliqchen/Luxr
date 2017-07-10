@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Luxr</string>
+    <string name="app_name">Luxe</string>
     <string name="action_settings">Settings</string>
     <string name="action_account">Account</string>
     <string name="email">e-mail</string>
@@ -14,4 +14,6 @@
     <string name="home">Home</string>
     <string name="gallery">Gallery</string>
     <string name="styleImage">Style Image</string>
+    <string name="instructions">Easily style yourself with Luxe! Find navigation in the top bar. Upload single articles of clothing against a white background for best effect. Find all uploads saved in the Gallery.</string>
+    <string name="welcome_msg">Welcome to Luxe!</string>
 </resources>

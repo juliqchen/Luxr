@@ -1,22 +1,34 @@
 package com.example.luxr;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;;
+import android.view.View;
+import android.view.WindowManager;
+
+import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
 
 /**
- * Created by jenniferhu on 6/30/17.
+ * Created by jenniferhu on 7/6/17.
  */
 
-public class StyleActivity extends AppCompatActivity {
-
+public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_style);
+        setContentView(R.layout.activity_home);
+
+        if (Build.VERSION.SDK_INT < 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
     @Override
@@ -66,7 +78,7 @@ public class StyleActivity extends AppCompatActivity {
 
     public void homeClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), CameraActivity.class);
+        Intent intent = new Intent(v.getContext(), HomeActivity.class);
         startActivity(intent);
     }
 
@@ -81,6 +93,5 @@ public class StyleActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), MainActivity.class);
         startActivity(intent);
     }
-
 
 }

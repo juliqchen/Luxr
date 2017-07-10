@@ -36,10 +36,10 @@ public class AccountActivity extends AppCompatActivity {
         if (id == R.id.action_account) {
             accountClicked();
             return true;
-        } /*else if (id == R.id.action_settings) {
-            settingsClicked();
+        } else if (id == R.id.action_upload) {
+            uploadClicked();
             return true;
-        }*/ else if (id == R.id.action_home) {
+        } else if (id == R.id.action_home) {
             homeClicked();
             return true;
         } else if (id == R.id.action_gallery){
@@ -49,7 +49,6 @@ public class AccountActivity extends AppCompatActivity {
             styleClicked();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -61,7 +60,7 @@ public class AccountActivity extends AppCompatActivity {
 
     public void galleryClicked(){
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(),GalleryActivity.class);
+        Intent intent = new Intent(v.getContext(), GalleryActivity.class);
         startActivity(intent);
     }
 
@@ -77,10 +76,11 @@ public class AccountActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*public void settingsClicked() {
+    public void uploadClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), StyleActivity.class);
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
         startActivity(intent);
-    }*/
+    }
+
 
 }
