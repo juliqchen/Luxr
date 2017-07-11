@@ -21,7 +21,6 @@
         android:id="@+id/nextButton"
         android:layout_width="117dp"
         android:layout_height="wrap_content"
-        android:onClick="nextClicked"
         android:text="@string/next_button"
         tools:text="@string/next_button"
         app:layout_constraintTop_toTopOf="parent"
