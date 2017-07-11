@@ -102,10 +102,18 @@ public class CameraActivity extends AppCompatActivity {
                 imgPic.setImageBitmap(imgEdge);
                 contourImg.setImageBitmap(contourBm);
                 System.out.println("File saved as JPEG");
-
                 FileHand fileHand = new FileHand(imgEdge, this.getApplicationContext());
+
+                Bitmap croppedImage = imageCropping(imgEdge);
+                imgPic.setImageBitmap(croppedImage);
+
             }
         }
+    }
+
+    private Bitmap imageCropping(Bitmap imgEdge) {
+        ImageCropper imgCropper = new ImageCropper(imgEdge);
+        return imgCropper.imgEdge;
     }
 
     private Bitmap detectEdges(Bitmap bitmap) {
