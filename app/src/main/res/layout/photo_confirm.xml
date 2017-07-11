@@ -32,14 +32,14 @@
         tools:layout_editor_absoluteY="514dp" />
 
     <ExpandableListView
-        android:id="@+id/item_type"
+        android:id="@+id/listType"
         android:layout_width="329dp"
         android:layout_height="34dp"
         tools:layout_editor_absoluteX="41dp"
         tools:layout_editor_absoluteY="362dp" />
 
     <ExpandableListView
-        android:id="@+id/item_color"
+        android:id="@+id/listColor"
         android:layout_width="329dp"
         android:layout_height="34dp"
         tools:layout_editor_absoluteX="41dp"
