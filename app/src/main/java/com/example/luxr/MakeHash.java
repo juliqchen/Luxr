@@ -1,7 +1,5 @@
 package com.example.luxr;
 
-import android.bluetooth.BluetoothAssignedNumbers;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name">Luxe</string>
     <string name="action_settings">Settings</string>
     <string name="action_account">Account</string>
@@ -42,4 +42,5 @@
     <string name="reupload">Retake</string>
     <string name="confirm">Confirm</string>
     <string name="photo_edit">edited_photo</string>
+
 </resources>

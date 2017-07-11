@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,26 +12,37 @@
         android:layout_width="274dp"
         android:layout_height="267dp"
         app:srcCompat="@mipmap/ic_photo_camera_black_24dp"
+<<<<<<< HEAD
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginStart="55dp"
         app:layout_constraintLeft_toLeftOf="parent" />
+=======
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="48dp" />
+>>>>>>> refs/remotes/origin/master
 
     <Button
         android:id="@+id/upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/reupload"
+<<<<<<< HEAD
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="35dp"
         android:layout_marginStart="55dp"
         app:layout_constraintLeft_toLeftOf="parent" />
+=======
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="514dp" />
+>>>>>>> refs/remotes/origin/master
 
     <Button
         android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/confirm"
+<<<<<<< HEAD
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="35dp"
         android:layout_marginEnd="55dp"
@@ -52,3 +64,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
+=======
+        tools:layout_editor_absoluteX="272dp"
+        tools:layout_editor_absoluteY="514dp" />
+
+    <ExpandableListView
+        android:id="@+id/item_type"
+        android:layout_width="329dp"
+        android:layout_height="34dp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="362dp" />
+
+    <ExpandableListView
+        android:id="@+id/item_color"
+        android:layout_width="329dp"
+        android:layout_height="34dp"
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="425dp" />
+
+</android.support.constraint.ConstraintLayout>
+
+>>>>>>> refs/remotes/origin/master
