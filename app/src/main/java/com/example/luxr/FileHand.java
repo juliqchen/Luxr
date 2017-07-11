@@ -30,10 +30,12 @@ public class FileHand extends AppCompatActivity{
     private String mCurrentPhotoPath;
     private String mCurrentPhotoName;
 
+    public static MakeHash makeHash = new MakeHash();
 
     public FileHand(Bitmap bitmap, Context c) {
         this.c = c;
         createImageFile(bitmap);
+        System.out.println(MakeHash.closet.containsKey("Tops"));
     }
 
     private File createImageFile(Bitmap bitmap) {
