@@ -17,10 +17,13 @@ class ImageCropper {
     }
 
     private void imagePrinter(Bitmap imgEdge) {
-
         for (int i = 0; i < imgEdge.getWidth(); i++) {
             for (int j = 0; j < imgEdge.getHeight(); j++) {
-                System.out.println(imgEdge.getPixel(i, j));
+                int pixel = imgEdge.getPixel(i, j);
+                if (pixel == -1) {
+
+                }
+
             }
         }
     }
