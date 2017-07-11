@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +17,7 @@ import java.util.Date;
  * Created by juliachen on 7/5/17.
  */
 
-public class FileHand {
+public class FileHand extends AppCompatActivity{
 
     private static ArrayList<String> FilePathStrings = new ArrayList<>();
     private static ArrayList<String> FileNameStrings = new ArrayList<>();
@@ -25,8 +26,10 @@ public class FileHand {
     private File[] mediaDirs;
     private String imageFileName;
 
+
     private String mCurrentPhotoPath;
     private String mCurrentPhotoName;
+
 
     public FileHand(Bitmap bitmap, Context c) {
         this.c = c;
@@ -35,7 +38,7 @@ public class FileHand {
 
     private File createImageFile(Bitmap bitmap) {
         File root = c.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        myDir = new File(root.toString(), "Luxr_Images");
+        myDir = new File(root.toString(), "Luxe_Images");
         if (!myDir.exists()) {
             myDir.mkdirs();
             System.out.println("Directory Made: " + myDir.getAbsolutePath().toString());
@@ -83,7 +86,7 @@ public class FileHand {
     private String createFileName() {
         //create an image file name with timestamp
         String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
-        imageFileName = "PlantPlacesImage" + timestamp + ".png";
+        imageFileName = "Luxe" + timestamp + ".png";
         mCurrentPhotoName = imageFileName.trim();
         FileNameStrings.add(mCurrentPhotoName);
         return imageFileName;
