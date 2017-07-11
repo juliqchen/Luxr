@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/image_edited"
+        android:layout_width="274dp"
+        android:layout_height="267dp"
+        android:contentDescription="@string/photo-edit"
+        app:srcCompat="@mipmap/ic_photo_camera_black_24dp"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="55dp" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reupload"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="375dp" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm"
+        tools:layout_editor_absoluteX="241dp"
+        tools:layout_editor_absoluteY="375dp" />
 </android.support.constraint.ConstraintLayout>
