@@ -32,7 +32,6 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
         expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
             @Override
             public void onGroupExpand(int groupPosition) {
                 Toast.makeText(getApplicationContext(),
@@ -64,7 +63,6 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                 return false;
             }
         });
-        //ExpandableListView typeList = (ExpandableListView) findViewById(R.id.listType);
     }
 }
 
