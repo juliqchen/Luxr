@@ -66,7 +66,7 @@ public class AccountActivity extends AppCompatActivity {
 
     public void homeClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), CameraActivity.class);
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
         startActivity(intent);
     }
 
@@ -78,7 +78,7 @@ public class AccountActivity extends AppCompatActivity {
 
     public void uploadClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), MainActivity.class);
+        Intent intent = new Intent(v.getContext(), CameraActivity.class);
         startActivity(intent);
     }
 

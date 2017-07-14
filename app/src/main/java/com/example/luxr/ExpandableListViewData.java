@@ -9,7 +9,7 @@ import java.util.List;
  * Created by jenniferhu on 7/11/17.
  */
 
-public class ExpandableListView {
+public class ExpandableListViewData {
     public static HashMap<String, List<String>> getData(){
         HashMap<String, List<String>> expandableListDetail = new HashMap<String, List<String>>();
 
