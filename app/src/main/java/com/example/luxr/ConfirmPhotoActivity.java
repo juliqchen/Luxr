@@ -15,8 +15,5 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_confirm);
 
-        ExpandableListView typeList = (ExpandableListView) findViewById(R.id.listType);
-
-
     }
 }
