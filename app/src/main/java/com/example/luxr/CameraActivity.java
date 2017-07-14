@@ -3,7 +3,6 @@ package com.example.luxr;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,15 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import static android.view.View.OnClickListener;
 
@@ -173,7 +167,7 @@ public class CameraActivity extends AppCompatActivity {
 
     public void homeClicked() {
         View v = new View(this);
-        Intent intent = new Intent(v.getContext(), CameraActivity.class);
+        Intent intent = new Intent(v.getContext(), MainActivity.class);
         startActivity(intent);
     }
 
