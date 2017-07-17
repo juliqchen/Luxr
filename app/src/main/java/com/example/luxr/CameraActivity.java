@@ -78,6 +78,14 @@ public class CameraActivity extends AppCompatActivity {
                 fabClicked(view);
             }
         });
+
+//        FloatingActionButton confirm = (FloatingActionButton) findViewById(R.id.confirm);
+//        confirm.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                confirmClicked();
+//            }
+//        });
     }
 
     //fabClicked v1.0.0
@@ -173,4 +181,10 @@ public class CameraActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), AccountActivity.class);
         startActivity(intent);
     }
+
+//    public void confirmClicked(){
+//        View v = new View(this);
+//        Intent intent = new Intent(v.getContext(), ConfirmPhotoActivity.class);
+//        startActivity(intent);
+//    }
 }
