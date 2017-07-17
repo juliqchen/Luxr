@@ -137,10 +137,7 @@ public class CameraActivity extends AppCompatActivity {
         if (id == R.id.action_account) {
             accountClicked();
             return true;
-        } /*else if (id == R.id.action_settings) {
-            settingsClicked();
-            return true;
-        }*/ else if (id == R.id.action_home) {
+        } else if (id == R.id.action_home) {
             homeClicked();
             return true;
         } else if (id == R.id.action_gallery){
