@@ -8,6 +8,12 @@
     android:screenOrientation="portrait"
     android:id="@+id/main_view_id">
 
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,19 +21,27 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/upload"
         android:layout_width="67dp"
         android:layout_height="81dp"
-        android:layout_gravity="top|center_horizontal"
+        android:layout_gravity="top|right"
         android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_file_upload_black_24dp"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="bottom|center_horizontal" />
+        app:layout_anchorGravity="bottom|left" />
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/confirm"
+        android:layout_width="67dp"
+        android:layout_height="81dp"
+        android:layout_gravity="center_vertical|left"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        android:visibility="visible"
+        app:fabSize="mini"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="bottom|right"
+        app:srcCompat="@mipmap/ic_done_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
 
