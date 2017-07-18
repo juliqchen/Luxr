@@ -42,7 +42,6 @@ public class CameraActivity extends AppCompatActivity {
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
-
     }
 
     //creates mLoaderCallback for OpenCVLoader

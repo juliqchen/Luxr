@@ -42,5 +42,7 @@
     <string name="reupload">Retake</string>
     <string name="confirm">Confirm</string>
     <string name="photo_edit">edited_photo</string>
+    <string name="app_label">Luxe</string>
+    <string name="search_hint">colors</string>
 
 </resources>
