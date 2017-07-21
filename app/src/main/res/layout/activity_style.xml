@@ -21,15 +21,16 @@
         tools:layout_editor_absoluteX="194dp" />
 
     <SearchView
+        android:id="@+id/searchView"
         android:layout_width="352dp"
         android:layout_height="31dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="6dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/styleGrid"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="16dp"
-        android:id="@+id/searchView" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <ImageView
         android:id="@+id/styleImage"
@@ -43,6 +44,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/styleGrid"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_accessibility_black_24dp" />
+        app:srcCompat="@color/common_google_signin_btn_text_dark_default" />
 
 </android.support.constraint.ConstraintLayout>
