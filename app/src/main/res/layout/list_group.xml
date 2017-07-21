@@ -9,8 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
         android:paddingEnd="10dp"
+        android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
         android:paddingTop="10dp"
         android:textColor="@android:color/black" />
 
