@@ -40,7 +40,6 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
         });
 
         expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
             @Override
             public void onGroupCollapse(int groupPosition) {
                 Toast.makeText(getApplicationContext(),
