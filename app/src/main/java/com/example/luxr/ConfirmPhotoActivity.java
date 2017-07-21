@@ -24,9 +24,9 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.expandable_list_view_test);
+        setContentView(R.layout.photo_confirm);
 
-        expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
+        expandableListView = (ExpandableListView) findViewById(R.id.expListView);
         expandableListDetail = ExpandableListViewData.getData();
         expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
         expandableListAdapter = new ExpandableListAdapter(this, expandableListTitle, expandableListDetail);

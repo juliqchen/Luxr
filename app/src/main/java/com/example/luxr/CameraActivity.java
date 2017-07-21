@@ -2,6 +2,7 @@ package com.example.luxr;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -78,13 +79,19 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-//        FloatingActionButton confirm = (FloatingActionButton) findViewById(R.id.confirm);
-//        confirm.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                confirmClicked();
-//            }
-//        });
+        FloatingActionButton confirm = (FloatingActionButton) findViewById(R.id.confirm);
+        confirm.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmClicked();
+            }
+        });
+    }
+
+    private void confirmClicked() {
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), ConfirmPhotoActivity.class);
+        startActivity(intent);
     }
 
     //fabClicked v1.0.0
@@ -109,6 +116,7 @@ public class CameraActivity extends AppCompatActivity {
 
                 Bitmap croppedImage = imageCropping(imgEdge, cameraImage);
                 imgPic.setImageBitmap(croppedImage);
+                imgPic.setBackgroundColor(Color.WHITE);
                 System.out.println("File saved as JPEG");
                 FileHand fileHand = new FileHand(croppedImage, this.getApplicationContext());
 

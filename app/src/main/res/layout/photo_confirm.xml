@@ -38,6 +38,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <ExpandableListView
+        android:id="@+id/expListView"
         android:layout_width="306dp"
         android:layout_height="39dp"
         android:layout_marginStart="39dp"
