@@ -46,7 +46,6 @@ public class CameraActivity extends AppCompatActivity {
 
     //creates mLoaderCallback for OpenCVLoader
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-
         @Override
         public void onManagerConnected(int status) {
             switch (status) {
