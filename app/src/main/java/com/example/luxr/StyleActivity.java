@@ -36,7 +36,6 @@ public class StyleActivity extends ListActivity {
     }
 
     private void doSearch(String query){
-
         //
     }
 

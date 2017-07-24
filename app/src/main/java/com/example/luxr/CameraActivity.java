@@ -74,7 +74,7 @@ public class CameraActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Loading Camera", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                fabClicked(view);
+                uploadClicked(view);
             }
         });
 
@@ -93,8 +93,8 @@ public class CameraActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //fabClicked v1.0.0
-    public void fabClicked(View v) {
+    //uploadClicked v1.0.0
+    public void uploadClicked(View v) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
