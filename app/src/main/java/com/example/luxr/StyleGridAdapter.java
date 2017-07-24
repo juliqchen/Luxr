@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * This class sets the custom adapter as the source for all items to be displayed in the grid
  */
 
-public class GridImageAdapter extends BaseAdapter {
+public class StyleGridAdapter extends BaseAdapter {
 
     private Activity activity;
     private ArrayList<String> data;
@@ -27,7 +27,7 @@ public class GridImageAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater = null;
 
-    public GridImageAdapter(Activity galleryActivity, ArrayList<String> FilePathStrings, ArrayList<String> FileNameStrings) {
+    public StyleGridAdapter(Activity galleryActivity, ArrayList<String> FilePathStrings, ArrayList<String> FileNameStrings) {
         this.activity = galleryActivity;
         this.data = FilePathStrings;
         this.name = FileNameStrings;
@@ -56,7 +56,7 @@ public class GridImageAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(activity.getApplicationContext());
-            imageView.setLayoutParams(new GridView.LayoutParams(360, 360));
+            imageView.setLayoutParams(new GridView.LayoutParams(280, 280));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setBackgroundColor(Color.WHITE);
             imageView.setPadding(8, 8, 8, 8);

@@ -4,41 +4,62 @@ import android.app.ListActivity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
+import android.widget.ImageView;
 
-;
+;import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by jenniferhu on 6/30/17.
  */
 
-public class StyleActivity extends ListActivity {
+public class StyleActivity extends AppCompatActivity {
+
+    File file;
+    ArrayList<String> FilePathStrings;
+    ArrayList<String> FileNameStrings;
+    File[] listFile;
+    GridView grid;
+    StyleGridAdapter adapter;
+    ImageView items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style);
-        handleIntent(getIntent());
+
+        file = FileHand.getMyDir();
+        FilePathStrings = FileHand.getFilePathStrings();
+        FileNameStrings = FileHand.getFileNameStrings();
+        listFile = file.listFiles();
+
+        grid = (GridView) findViewById(R.id.styleGrid);
+        adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
+        grid.setAdapter(adapter);
+//        handleIntent(getIntent());
     }
 
-    public void onNewIntent(Intent intent){
-        setIntent(intent);
-        handleIntent(intent);
-    }
-
-    private void handleIntent(Intent intent){
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            doSearch(query);
-        }
-    }
-
-    private void doSearch(String query){
-
-        //
-    }
+//    public void onNewIntent(Intent intent){
+//        setIntent(intent);
+//        handleIntent(intent);
+//    }
+//
+//    private void handleIntent(Intent intent){
+//        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+//            String query = intent.getStringExtra(SearchManager.QUERY);
+//            doSearch(query);
+//        }
+//    }
+//
+//    private void doSearch(String query){
+//
+//        //
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){

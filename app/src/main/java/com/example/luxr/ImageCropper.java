@@ -25,7 +25,6 @@ class ImageCropper {
         this.width = imgEdge.getWidth();
         System.out.println("about to transparent on this many pixels: " + imgEdge.getHeight() * imgEdge.getWidth());
         trackPix = new boolean[width][height];
-
         recursiveCrop(1, 1);
 //        for (double a : trackPix) {
 //            System.out.println(a);
