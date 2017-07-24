@@ -1,7 +1,5 @@
 package com.example.luxr;
 
-import android.app.ListActivity;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +9,10 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-;import java.io.File;
+import java.io.File;
 import java.util.ArrayList;
+
+
 
 /**
  * Created by jenniferhu on 6/30/17.
