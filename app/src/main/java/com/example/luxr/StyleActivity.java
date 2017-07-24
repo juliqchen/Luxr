@@ -60,6 +60,9 @@ public class StyleActivity extends AppCompatActivity {
 //
 //        //
 //    }
+    private void doSearch(String query){
+        //
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
