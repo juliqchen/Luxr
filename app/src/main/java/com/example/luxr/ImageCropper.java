@@ -25,7 +25,11 @@ class ImageCropper {
         this.width = imgEdge.getWidth();
         System.out.println("about to transparent on this many pixels: " + imgEdge.getHeight() * imgEdge.getWidth());
         trackPix = new boolean[width][height];
-        recursiveCrop(1, 1);
+
+        PixelQueue pq = new PixelQueue();
+
+        whileCrop(1, 1);
+//        recursiveCrop(1, 1);
 //        for (double a : trackPix) {
 //            System.out.println(a);
 //        }
@@ -34,17 +38,21 @@ class ImageCropper {
         //imagePrinter(imgEdge);
     }
 
-    private void recursiveCrop(int x, int y) {
-        if (x >= 0 && x < imgEdge.getWidth() && y >= 0 && y < imgEdge.getHeight()
-                && !trackPix[x][y] && imgEdge.getPixel(x, y) == Color.BLACK) {
-            copy.setPixel(x, y, Color.TRANSPARENT);
-            trackPix[x][y] = true;
-            recursiveCrop(x + 1, y);
-            recursiveCrop(x - 1, y);
-            recursiveCrop(x, y + 1);
-            recursiveCrop(x, y - 1);
-        }
+    private void whileCrop(int x, int y) {
+        if ()
     }
+
+//    private void recursiveCrop(int x, int y) {
+//        if (x >= 0 && x < imgEdge.getWidth() && y >= 0 && y < imgEdge.getHeight()
+//                && !trackPix[x][y] && imgEdge.getPixel(x, y) == Color.BLACK) {
+//            copy.setPixel(x, y, Color.TRANSPARENT);
+//            trackPix[x][y] = true;
+//            recursiveCrop(x + 1, y);
+//            recursiveCrop(x - 1, y);
+//            recursiveCrop(x, y + 1);
+//            recursiveCrop(x, y - 1);
+//        }
+//    }
 
 //    private void imagePrinter(Bitmap imgEdge) {
 //        for (int i = 0; i < imgEdge.getHeight(); i++) {
