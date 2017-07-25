@@ -30,9 +30,5 @@ class PixelQueue {
         return list.size();
     }
 
-    public void addItems(LinkedList<? extends HashObject> q) {
-        while (q.hasItems())
-    }
-
 
 }

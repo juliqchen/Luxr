@@ -23,7 +23,6 @@ import static android.view.View.OnClickListener;
 public class CameraActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST = 10;
-    private static final String TAG = "Luxr::MainActivity";
     private ImageView imgPic;
     private ImageView contourImg;
     private Bitmap contourBm;
@@ -34,34 +33,8 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
         onCreateViewSetup();
 
-        //Run OpenCV on startup, ONCE
-        //the call from the constructor allows for one time run at start-up
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_2_0, this, mLoaderCallback);
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-        }
-    }
 
-    //creates mLoaderCallback for OpenCVLoader
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                } break;
-                default:
-                {
-                    super.onManagerConnected(status);
-                    Log.i(TAG, "OpenCV loading failed");
-                } break;
-            }
-        }
-    };
+    }
 
     //populate the Main Camera View
     public void onCreateViewSetup() {

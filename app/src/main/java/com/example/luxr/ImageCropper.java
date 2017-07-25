@@ -28,7 +28,7 @@ class ImageCropper {
 
         PixelQueue pq = new PixelQueue();
 
-        whileCrop(1, 1);
+        whileCrop();
 //        recursiveCrop(1, 1);
 //        for (double a : trackPix) {
 //            System.out.println(a);
@@ -38,8 +38,12 @@ class ImageCropper {
         //imagePrinter(imgEdge);
     }
 
-    private void whileCrop(int x, int y) {
-        if ()
+    private void whileCrop() {
+        for (int x = 0; x < imgEdge.getWidth(); x++) {
+            for (int y = 0; y < imgEdge.getHeight(); y++) {
+                copy.setPixel(x, y, Color.RED);
+            }
+        }
     }
 
 //    private void recursiveCrop(int x, int y) {
