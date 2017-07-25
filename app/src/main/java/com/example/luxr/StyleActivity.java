@@ -19,7 +19,6 @@ import java.util.ArrayList;
  */
 
 public class StyleActivity extends AppCompatActivity {
-
     File file;
     ArrayList<String> FilePathStrings;
     ArrayList<String> FileNameStrings;

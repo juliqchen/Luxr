@@ -63,5 +63,9 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
             }
         });
     }
+
+    //create onclicklistener for the options in the list
+
+
 }
 
