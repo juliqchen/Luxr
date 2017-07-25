@@ -1,7 +1,6 @@
 package com.example.luxr;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 
 
 /**
@@ -39,7 +38,7 @@ class ImageCropper {
     }
 
     private void whileCrop(int x, int y) {
-        if ()
+        //if ();
     }
 
 //    private void recursiveCrop(int x, int y) {
