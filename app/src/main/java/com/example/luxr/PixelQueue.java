@@ -30,5 +30,4 @@ class PixelQueue {
         return list.size();
     }
 
-
 }
