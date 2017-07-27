@@ -73,15 +73,16 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                         expandableListTitle.get(groupPosition) + " -> " +
                                 expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition),
                         Toast.LENGTH_SHORT).show();
+
                 //onclicklistener for options in the list
-                if (color != null){
+                if (color == null){
                     color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Color has already been specified!", Toast.LENGTH_LONG).show();
                 }
-                if (type != null){
-                    type = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition));
+                if (type == null){
+                    type = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Type has already been specified!", Toast.LENGTH_LONG).show();
