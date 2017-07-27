@@ -25,6 +25,9 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
     String color;
     String type;
 
+    View lastColor;
+    View lastType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +42,7 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                 startActivity(intent);
 
                 //toast to show which color and type was selected
-                Toast.makeText(getApplicationContext(), color + "and " + type + "were selected.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), color + " and " + type + " were selected.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -78,19 +81,14 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
 //                        Toast.LENGTH_SHORT).show();
 
                 //onclicklistener for options in the list
-                if (color == null){
+                //doesnt work rn
+                while (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
                     color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-                    Toast.makeText(getApplicationContext(), color + "was chosen", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Toast.makeText(getApplicationContext(), "Color has already been specified!", Toast.LENGTH_SHORT).show();
-                }
-                if (type == null){
+                while (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && type == null){
                     type = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-                    Toast.makeText(getApplicationContext(), type + "was chosen", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Type has already been specified!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), type + " was chosen.", Toast.LENGTH_SHORT).show();
                 }
                 return false;
             }
