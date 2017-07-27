@@ -59,7 +59,6 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         expandableListTitle.get(groupPosition) + " List Collapsed.",
                         Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -71,15 +70,12 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                         getApplicationContext(),
                         expandableListTitle.get(groupPosition) + " -> " +
                                 expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition),
-                        Toast.LENGTH_SHORT
-                ).show();
-                return false;
+                        Toast.LENGTH_SHORT).show();
+                //onclicklistener for options in the list
 
+                return false;
             }
         });
     }
-
-    //create onclicklistener for the options in the list
-
 }
 
