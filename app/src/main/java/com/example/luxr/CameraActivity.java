@@ -26,6 +26,7 @@ public class CameraActivity extends AppCompatActivity {
     private ImageView imgPic;
     private ImageView contourImg;
     private Bitmap contourBm;
+    public static MakeHash makeHash = new MakeHash();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

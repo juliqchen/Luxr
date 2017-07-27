@@ -45,6 +45,7 @@ class ImageCropper {
             }
         }
     }
+}
 
 //    private void recursiveCrop(int x, int y) {
 //        if (x >= 0 && x < imgEdge.getWidth() && y >= 0 && y < imgEdge.getHeight()
@@ -102,4 +103,3 @@ class ImageCropper {
 //        }
 //        orig = copy;
 //    }
-}
