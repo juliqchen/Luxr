@@ -22,6 +22,8 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
     HashMap<String, List<String>> expandableListDetail;
+    String color;
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,18 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                                 expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition),
                         Toast.LENGTH_SHORT).show();
                 //onclicklistener for options in the list
-
+                if (color != null){
+                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Color has already been specified!", Toast.LENGTH_LONG).show();
+                }
+                if (type != null){
+                    type = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Type has already been specified!", Toast.LENGTH_LONG).show();
+                }
                 return false;
             }
         });
