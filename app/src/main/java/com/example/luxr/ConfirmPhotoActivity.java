@@ -81,16 +81,26 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
 //                        Toast.LENGTH_SHORT).show();
 
                 //onclicklistener for options in the list
-                //doesnt work rn
+                //doesnt work rn?? idk why
+//                if (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
+//                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
+//                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
+//                }
                 while (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
                     color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
                     Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
+                    int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+                    parent.setItemChecked(index, true);
                 }
+//                if (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && color == null){
+//                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
+//                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
+//                }
                 while (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && type == null){
                     type = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
                     Toast.makeText(getApplicationContext(), type + " was chosen.", Toast.LENGTH_SHORT).show();
                 }
-                return false;
+                return true;
             }
         });
     }
