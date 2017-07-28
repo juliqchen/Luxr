@@ -21,6 +21,7 @@ public class CameraActivity extends AppCompatActivity {
     private ImageView imgPic;
     private ImageView contourImg;
     private Bitmap contourBm;
+    public static MakeHash makeHash = new MakeHash();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private Bitmap imageCropping(Bitmap imgEdge, Bitmap orig) {
         ImageCropper imgCropper = new ImageCropper(imgEdge, orig);
-        return imgCropper.copy;
+        return imgCropper.orig;
     }
 
     private Bitmap detectEdges(Bitmap bitmap) {
