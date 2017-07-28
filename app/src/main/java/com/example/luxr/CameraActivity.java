@@ -99,7 +99,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private Bitmap imageCropping(Bitmap imgEdge, Bitmap orig) {
         ImageCropper imgCropper = new ImageCropper(imgEdge, orig);
-        return imgCropper.copy;
+        return imgCropper.orig;
     }
 
     private Bitmap detectEdges(Bitmap bitmap) {
