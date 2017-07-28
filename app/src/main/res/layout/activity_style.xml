@@ -52,7 +52,6 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="44dp"
-        tools:layout_editor_absoluteX="271dp" />
+        tools:layout_editor_absoluteY="47dp" />
 
 </android.support.constraint.ConstraintLayout>

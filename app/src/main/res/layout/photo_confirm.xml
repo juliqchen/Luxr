@@ -7,6 +7,33 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/colorselection"
+            android:layout_width="89dp"
+            android:layout_height="28dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="7dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/typeselection"
+            android:layout_width="122dp"
+            android:layout_height="27dp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginStart="26dp"
+            android:text="@string/type"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/colorselection" />
+
+    </android.support.constraint.ConstraintLayout>
+
     <Button
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"
@@ -40,7 +67,7 @@
         <ExpandableListView
             android:id="@+id/expListView"
             android:layout_width="wrap_content"
-            android:layout_height="270dp" />
+            android:layout_height="254dp" />
 
     </LinearLayout>
 </RelativeLayout>
