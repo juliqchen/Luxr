@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photo_confirm);
 
+
+
         //next button --> gallery activity
         Button next = (Button) findViewById(R.id.nextButton);
         next.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +43,12 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), GalleryActivity.class);
                 startActivity(intent);
+
+                //calls textview
+                TextView colorSelection = (TextView)findViewById(R.id.colorselection);
+                TextView typeSelection = (TextView)findViewById(R.id.typeselection);
+                colorSelection.setText(color);
+                typeSelection.setText(type);
 
                 //toast to show which color and type was selected
                 Toast.makeText(getApplicationContext(), color + " and " + type + " were selected.", Toast.LENGTH_LONG).show();
@@ -89,8 +98,6 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                 while (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
                     color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
                     Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
-                    int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
-                    parent.setItemChecked(index, true);
                 }
 //                if (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && color == null){
 //                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);

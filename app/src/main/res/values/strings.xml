@@ -44,5 +44,7 @@
     <string name="photo_edit">edited_photo</string>
     <string name="app_label">Luxe</string>
     <string name="search_hint">colors</string>
+    <string name="color">Color</string>
+    <string name="type">Type</string>
 
 </resources>
