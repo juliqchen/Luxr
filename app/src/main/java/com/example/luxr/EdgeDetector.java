@@ -29,7 +29,7 @@ public class EdgeDetector {
         Utils.bitmapToMat(bitmap, rgba);
         Mat edges = new Mat(rgba.size(), CvType.CV_8UC1);
         Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
-        Imgproc.blur(edges, edges, new Size(3, 3));
+        //Imgproc.blur(edges, edges, new Size(3, 3));
 
         Imgproc.Canny(edges, edges, 80, 100);
 
@@ -54,7 +54,7 @@ public class EdgeDetector {
             System.out.println("Found Contour");
             //for each contour, display it in blue
             for (int i = 0; i < contours.size(); i++) {
-                Imgproc.drawContours(drawMat, contours, i, new Scalar(255, 0 ,0), 3);
+                Imgproc.drawContours(drawMat, contours, i, new Scalar(255, 255, 255), 1);
             }
         }
 
