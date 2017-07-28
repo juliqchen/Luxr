@@ -25,6 +25,9 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
     String color;
     String type;
 
+    View lastColor;
+    View lastType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,9 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), GalleryActivity.class);
                 startActivity(intent);
+
+                //toast to show which color and type was selected
+                Toast.makeText(getApplicationContext(), color + " and " + type + " were selected.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -68,26 +74,33 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id){
-                Toast.makeText(
-                        getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " -> " +
-                                expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition),
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(
+//                        getApplicationContext(),
+//                        expandableListTitle.get(groupPosition) + " -> " +
+//                                expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition),
+//                        Toast.LENGTH_SHORT).show();
 
                 //onclicklistener for options in the list
-                if (color == null){
+                //doesnt work rn?? idk why
+//                if (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
+//                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
+//                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
+//                }
+                while (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
                     color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
+                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
+                    int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+                    parent.setItemChecked(index, true);
                 }
-                else{
-                    Toast.makeText(getApplicationContext(), "Color has already been specified!", Toast.LENGTH_LONG).show();
-                }
-                if (type == null){
+//                if (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && color == null){
+//                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
+//                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
+//                }
+                while (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && type == null){
                     type = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
+                    Toast.makeText(getApplicationContext(), type + " was chosen.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Toast.makeText(getApplicationContext(), "Type has already been specified!", Toast.LENGTH_LONG).show();
-                }
-                return false;
+                return true;
             }
         });
     }
