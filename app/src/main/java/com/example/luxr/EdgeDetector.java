@@ -7,7 +7,6 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Scalar;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
@@ -31,10 +30,10 @@ public class EdgeDetector {
         Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
         //Imgproc.blur(edges, edges, new Size(3, 3));
 
-        Imgproc.Canny(edges, edges, 80, 100);
+        Imgproc.Canny(edges, edges, 80, 200);
 
         //BitmapHelper.showBitmap(this, bitmap, imgPic);
-        Bitmap resultBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), Bitmap.Config.ARGB_8888);
+        Bitmap resultBitmap = Bitmap.createBitmap(edges.cols(), edges.rows(), bitmap.getConfig());
         Utils.matToBitmap(edges, resultBitmap);
         //BitmapHelper.showBitmap(this, resultBitmap, detectEdgesImageView);
         currentImage = resultBitmap;
@@ -54,12 +53,12 @@ public class EdgeDetector {
             System.out.println("Found Contour");
             //for each contour, display it in blue
             for (int i = 0; i < contours.size(); i++) {
-                Imgproc.drawContours(drawMat, contours, i, new Scalar(255, 255, 255), 1);
+                Imgproc.drawContours(drawMat, contours, i, new Scalar(255, 255, 255), 5);
             }
         }
 
         //Bitmap
-        Bitmap resultOtherBitmap = Bitmap.createBitmap(drawMat.cols(), drawMat.rows(), Bitmap.Config.ARGB_8888);
+        Bitmap resultOtherBitmap = Bitmap.createBitmap(drawMat.cols(), drawMat.rows(), bitmap.getConfig());
         Utils.matToBitmap(drawMat, resultOtherBitmap);
         contourImage = resultOtherBitmap;
 

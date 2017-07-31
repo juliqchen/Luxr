@@ -1,6 +1,7 @@
 package com.example.luxr;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
 
@@ -30,14 +31,20 @@ class ImageCropper {
     Mat image;
     Rect rectang;
     PixelQueue pq;
+    final int sampleSize = 2;
 
 
     public ImageCropper(Bitmap imgEdge, Bitmap originalImg) {
         this.imgEdge = imgEdge;
-        this.orig = originalImg;
-        this.copy = orig.copy(orig.getConfig(), true);
-        orig.setDensity(DisplayMetrics.DENSITY_LOW);
+        this.copy = originalImg;
+        //this.copy = orig.copy(orig.getConfig(), true);
+        //orig.setDensity(DisplayMetrics.DENSITY_LOW);
         copy.setDensity(DisplayMetrics.DENSITY_LOW);
+        imgEdge.setDensity(DisplayMetrics.DENSITY_LOW);
+
+        //make bitmaps smaller
+
+
         this.height = imgEdge.getHeight();
         this.width = imgEdge.getWidth();
         System.out.println("about to transparent on this many pixels: " + imgEdge.getHeight() * imgEdge.getWidth());
@@ -56,6 +63,7 @@ class ImageCropper {
         orig = copy;
 //        trackPix = new boolean[width][height];
 
+        //  WORKING!!!
         int x = 0;
         int y = 0;
 //
