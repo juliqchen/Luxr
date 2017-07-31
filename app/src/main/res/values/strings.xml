@@ -46,27 +46,5 @@
     <string name="search_hint">colors</string>
     <string name="color">Color</string>
     <string name="type">Type</string>
-    <string-array name="style_spinner">
-        <item>Accessories</item>
-        <item>Bottoms</item>
-        <item>Dresses</item>
-        <item>Jackets</item>
-        <item>Jumpsuits</item>
-        <item>Shoes</item>
-        <item>Tops</item>
 
-        <item>Black</item>
-        <item>Blue</item>
-        <item>Brown</item>
-        <item>Green</item>
-        <item>Gray</item>
-        <item>Gold</item>
-        <item>Orange</item>
-        <item>Pink</item>
-        <item>Purple</item>
-        <item>Red</item>
-        <item>Silver</item>
-        <item>White</item>
-        <item>Yellow</item>
-    </string-array>
 </resources>

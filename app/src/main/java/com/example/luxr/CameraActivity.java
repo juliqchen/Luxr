@@ -156,9 +156,4 @@ public class CameraActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void confirmClicked(){
-//        View v = new View(this);
-//        Intent intent = new Intent(v.getContext(), ConfirmPhotoActivity.class);
-//        startActivity(intent);
-//    }
 }
