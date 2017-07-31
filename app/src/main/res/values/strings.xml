@@ -47,25 +47,26 @@
     <string name="color">Color</string>
     <string name="type">Type</string>
     <string-array name="style_spinner">
-        <item name="Accessories"></item>
-        <item name="Bottoms"></item>
-        <item name = "Dresses"></item>
-        <item name ="Jackets"></item>
-        <item name = "Jumpsuits"></item>
-        <item name = "Shoes"></item>
-        <item name = "Tops"></item>
-        <item name = "Black"></item>
-        <item name = "Blue"></item>
-        <item name = "Brown"></item>
-        <item name = "Green"></item>
-        <item name = "Gray"></item>
-        <item name = "Gold"></item>
-        <item name = "Orange"></item>
-        <item name = "Pink"></item>
-        <item name ="Purple"></item>
-        <item name = "Red"></item>
-        <item name = "Silver"></item>
-        <item name = "White"></item>
-        <item name ="Yellow"></item>
+        <item>Accessories</item>
+        <item>Bottoms</item>
+        <item>Dresses</item>
+        <item>Jackets</item>
+        <item>Jumpsuits</item>
+        <item>Shoes</item>
+        <item>Tops</item>
+
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Brown</item>
+        <item>Green</item>
+        <item>Gray</item>
+        <item>Gold</item>
+        <item>Orange</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Red</item>
+        <item>Silver</item>
+        <item>White</item>
+        <item>Yellow</item>
     </string-array>
 </resources>

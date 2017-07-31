@@ -38,4 +38,5 @@ dependencies {
     compile project(':openCVLibrary320')
 
 
+    compile 'javax.annotation:javax.annotation-api:1.2'
 }

@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -43,11 +46,12 @@ public class StyleActivity extends AppCompatActivity {
         grid.setAdapter(adapter);
         handleIntent(getIntent());
 
-//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-//        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
-//                R.array.style_spinner, android.R.layout.simple_spinner_item);
-//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(spinnerAdapter);
+        //spinner for style activity
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.style_spinner, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
     }
 
     public void onNewIntent(Intent intent){
