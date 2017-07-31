@@ -73,22 +73,22 @@ public class CameraActivity extends AppCompatActivity {
     public void uploadClicked(View v) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-//        File root = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-//        File myDir = new File(root.toString(), "Luxe_Images");
-//        if (!myDir.exists()) {
-//            myDir.mkdirs();
-//            System.out.println("Directory Made: " + myDir.getAbsolutePath().toString());
-//        }
-//
-//        File imgFile = new File(myDir, "TEMP_IMAGE.png");
-//        try {
-//            imgFile.createNewFile();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imgFile));
-//        imageToUpload = Uri.fromFile(imgFile);
+        File root = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File myDir = new File(root.toString(), "Luxe_Images");
+        if (!myDir.exists()) {
+            myDir.mkdirs();
+            System.out.println("Directory Made: " + myDir.getAbsolutePath().toString());
+        }
+
+        File imgFile = new File(myDir, "TEMP_IMAGE.png");
+        try {
+            imgFile.createNewFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imgFile));
+        imageToUpload = Uri.fromFile(imgFile);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
@@ -102,23 +102,23 @@ public class CameraActivity extends AppCompatActivity {
                 //we are hearing back from the camera
                 System.out.println("hearing back");
 
-//                //Bitmap option setting
-//                BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-//                bitmapOptions.inSampleSize = sampleSize;
-//                //bitmapOptions.inDensity = DisplayMetrics.DENSITY_DEVICE_STABLE;
-//                bitmapOptions.inMutable = true;
-//
-//                Bitmap cameraImage = BitmapFactory.decodeFile(imageToUpload.getPath(), bitmapOptions);
-////                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
-//                Bitmap imgEdge = detectEdges(cameraImage);
-//                imgPic.setImageBitmap(imgEdge);
-//                contourImg.setImageBitmap(contourBm);
-//
-//                Bitmap croppedImage = imageCropping(contourBm, cameraImage);
-//                imgPic.setImageBitmap(croppedImage);
-//                imgPic.setBackgroundColor(Color.WHITE);
-//                System.out.println("File saved");
-//                FileHand fileHand = new FileHand(croppedImage, this.getApplicationContext());
+                //Bitmap option setting
+                BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                bitmapOptions.inSampleSize = sampleSize;
+                //bitmapOptions.inDensity = DisplayMetrics.DENSITY_DEVICE_STABLE;
+                bitmapOptions.inMutable = true;
+
+                Bitmap cameraImage = BitmapFactory.decodeFile(imageToUpload.getPath(), bitmapOptions);
+//                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+                Bitmap imgEdge = detectEdges(cameraImage);
+                imgPic.setImageBitmap(imgEdge);
+                contourImg.setImageBitmap(contourBm);
+
+                Bitmap croppedImage = imageCropping(contourBm, cameraImage);
+                imgPic.setImageBitmap(croppedImage);
+                imgPic.setBackgroundColor(Color.WHITE);
+                System.out.println("File saved");
+                FileHand fileHand = new FileHand(croppedImage, this.getApplicationContext());
 
             } else {
                 Toast.makeText(this, "Error while capturing Image", Toast.LENGTH_LONG);
