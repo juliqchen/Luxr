@@ -42,6 +42,12 @@ public class StyleActivity extends AppCompatActivity {
         adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
         grid.setAdapter(adapter);
         handleIntent(getIntent());
+
+//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+//        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+//                R.array.style_spinner, android.R.layout.simple_spinner_item);
+//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(spinnerAdapter);
     }
 
     public void onNewIntent(Intent intent){

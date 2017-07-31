@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="style_spinner">
+        <item name="Accessories"></item>
+        <item name="Bottoms"></item>
+        <item name = "Dresses"></item>
+        <item name ="Jackets"></item>
+        <item name = "Jumpsuits"></item>
+        <item name = "Shoes"></item>
+        <item name = "Tops"></item>
+        <item name = "Black"></item>
+        <item name = "Blue"></item>
+        <item name = "Brown"></item>
+        <item name = "Green"></item>
+        <item name = "Gray"></item>
+        <item name = "Gold"></item>
+        <item name = "Orange"></item>
+        <item name = "Pink"></item>
+        <item name ="Purple"></item>
+        <item name = "Red"></item>
+        <item name = "Silver"></item>
+        <item name = "White"></item>
+        <item name ="Yellow"></item>
+    </string-array>
+</resources>
