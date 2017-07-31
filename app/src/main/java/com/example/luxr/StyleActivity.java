@@ -1,13 +1,17 @@
 package com.example.luxr;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,27 +44,30 @@ public class StyleActivity extends AppCompatActivity {
         grid = (GridView) findViewById(R.id.styleGrid);
         adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
         grid.setAdapter(adapter);
-//        handleIntent(getIntent());
+        handleIntent(getIntent());
+
+        //spinner for style activity
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.style_spinner, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
     }
 
-//    public void onNewIntent(Intent intent){
-//        setIntent(intent);
-//        handleIntent(intent);
-//    }
-//
-//    private void handleIntent(Intent intent){
-//        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-//            String query = intent.getStringExtra(SearchManager.QUERY);
-//            doSearch(query);
-//        }
-//    }
-//
-//    private void doSearch(String query){
-//
-//        //
-//    }
+    public void onNewIntent(Intent intent){
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent){
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            doSearch(query);
+        }
+    }
+
     private void doSearch(String query){
-        //
+
     }
 
     @Override

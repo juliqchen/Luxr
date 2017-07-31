@@ -44,7 +44,8 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), GalleryActivity.class);
                 startActivity(intent);
 
-                //calls textview
+                //calls textview, works hella jank --  only shows up when button is pressed
+                //but i cant seem to be able to put it outside the button idk why
                 TextView colorSelection = (TextView)findViewById(R.id.colorselection);
                 TextView typeSelection = (TextView)findViewById(R.id.typeselection);
                 colorSelection.setText(color);
