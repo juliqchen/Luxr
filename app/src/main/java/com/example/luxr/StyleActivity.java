@@ -8,10 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -52,6 +52,17 @@ public class StyleActivity extends AppCompatActivity {
                 R.array.style_spinner, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
+
+        Button save = (Button) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //new intent should go to a faves page or something like that, not gallery
+                Intent intent = new Intent(view.getContext(), GalleryActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void onNewIntent(Intent intent){
