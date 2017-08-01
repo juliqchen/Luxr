@@ -1,8 +1,12 @@
 package com.example.luxr;
 
+import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by jenniferhu on 8/1/17.
@@ -10,19 +14,25 @@ import android.widget.BaseAdapter;
 
 public class FavsGridAdapter extends BaseAdapter {
 
+    private Activity activity;
+    private ArrayList<String> data;
+    private ArrayList<String> name;
+
+    private static LayoutInflater inflater = null;
+
     @Override
     public int getCount() {
-        return 0;
+        return data.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return i;
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
