@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 
 public class FavsActivity extends AppCompatActivity {
 
+    private ImageView imgPic;
     File file;
     ArrayList<String> FilePathStrings;
     ArrayList<String> FileNameStrings;
@@ -38,6 +41,17 @@ public class FavsActivity extends AppCompatActivity {
         grid = (GridView) findViewById(R.id.favsGrid);
         adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
         grid.setAdapter(adapter);
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //this code is probabaly wrong
+                //look at whether or not a new activity needs to be started or not
+                //might be easier to just start a new activity tho tbh
+                setContentView(R.layout.display);
+                imgPic = (ImageView)findViewById(R.id.display);
+            }
+        });
 
     }
 

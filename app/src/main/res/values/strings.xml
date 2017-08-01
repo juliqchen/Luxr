@@ -47,5 +47,6 @@
     <string name="color">Color</string>
     <string name="type">Type</string>
     <string name="saved">Saved Looks</string>
+    <string name="display">display</string>
 
 </resources>

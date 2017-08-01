@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -55,9 +56,18 @@ public class StyleActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //new intent should go to a faves page or something like that, not gallery
+                //new intent goes to faves/saved looks page
                 Intent intent = new Intent(view.getContext(), FavsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        //drag and drop from gridview onto imageview
+        grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
+
+                return true;
             }
         });
 
