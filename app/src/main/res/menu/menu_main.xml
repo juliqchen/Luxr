@@ -16,7 +16,8 @@
         app:showAsAction="always" />
 
     <item
-        android:icon="@mipmap/ic_favorite_black_24dp"
+        android:id="@+id/action_favs"
+        android:icon="@mipmap/ic_save_black_24dp"
         android:title="@string/favs_button"
         app:showAsAction="always" />
 

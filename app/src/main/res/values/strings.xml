@@ -46,5 +46,6 @@
     <string name="search_hint">colors</string>
     <string name="color">Color</string>
     <string name="type">Type</string>
+    <string name="saved">Saved Looks</string>
 
 </resources>
