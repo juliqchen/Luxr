@@ -7,59 +7,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.util.ArrayList;
-
 /**
- * Created by jenniferhu on 8/1/17.
+ * Created by jenniferhu on 8/3/17.
  */
 
-public class FavsActivity extends AppCompatActivity {
-
-    private ImageView imgPic;
-    File file;
-    ArrayList<String> FilePathStrings;
-    ArrayList<String> FileNameStrings;
-    File[] listFile;
-    GridView grid;
-    StyleGridAdapter adapter;
-
-    protected void onCreate(Bundle savedInstanceState) {
+public class FullScreenImageView extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favs);
+        setContentView(R.layout.display);
 
-        //populating gridview with saved_looks images
-        //copy-pasted from StyleActivity should prob doublecheck this
-        file = FileHand.getMyDir();
-        FilePathStrings = FileHand.getFilePathStrings();
-        FileNameStrings = FileHand.getFileNameStrings();
-        listFile = file.listFiles();
-
-        grid = (GridView) findViewById(R.id.favsGrid);
-        adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
-        grid.setAdapter(adapter);
-
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
-                //when a gridview image is clicked
-                //a full screen image of the image clicked will be displayed
-                GridView lv = (GridView) parent;
-                ImageView imageSelected = parent.getChildAt(pos-lv.getFirstVisiblePosition()).findViewById(R.id.favsGrid);
-                imageSelected.buildDrawingCache();
-                Bitmap myimage = imageSelected.getDrawingCache();
-                Intent intent = new Intent(view.getContext(), FullScreenImageView.class);
-                intent.putExtra("Display", myimage);
-                startActivity(intent);
-            }
-        });
-
+        ImageView Fullscreen = (ImageView) findViewById(R.id.display);
+        Bitmap Image = (Bitmap) getIntent().getExtras().get("Display");
+        Fullscreen.setImageBitmap(Image);
     }
-
     //menu stuff
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
