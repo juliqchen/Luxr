@@ -21,20 +21,10 @@
         <activity android:name=".AccountActivity"></activity>
         <activity android:name=".CameraActivity"></activity>
         <activity android:name=".GalleryActivity"></activity>
-        <activity android:name=".StyleActivity">
-            <!-- enable the search dialog to send searches to SearchableActivity -->
-            <meta-data android:name="android.app.default_searchable"
-                android:value=".SearchableActivity" />
-        </activity>
-        <!-- this is the searchable activity; it performs searches -->
-        <activity android:name=".SearchableActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-        </activity>
+        <activity android:name=".StyleActivity"></activity>
         <activity android:name=".ConfirmPhotoActivity"></activity>
+        <activity android:name=".FavsActivity"></activity>
+        <activity android:name=".FullScreenImageView"></activity>
 
 
 

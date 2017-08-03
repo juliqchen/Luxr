@@ -20,7 +20,7 @@ public class FullScreenImageView extends AppCompatActivity {
         setContentView(R.layout.display);
 
         ImageView Fullscreen = (ImageView) findViewById(R.id.display);
-        Bitmap Image = (Bitmap) getIntent().getExtras().get("Display");
+        Bitmap Image = (Bitmap) getIntent().getParcelableExtra("Display");
         Fullscreen.setImageBitmap(Image);
     }
     //menu stuff

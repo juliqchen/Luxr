@@ -2,6 +2,7 @@ package com.example.luxr;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -51,9 +52,9 @@ public class FavsActivity extends AppCompatActivity {
                 GridView lv = (GridView) parent;
                 ImageView imageSelected = parent.getChildAt(pos-lv.getFirstVisiblePosition()).findViewById(R.id.favsGrid);
                 imageSelected.buildDrawingCache();
-                Bitmap myimage = imageSelected.getDrawingCache();
+                Bitmap myImage = ((BitmapDrawable)imageSelected.getDrawable()).getBitmap();
                 Intent intent = new Intent(view.getContext(), FullScreenImageView.class);
-                intent.putExtra("Display", myimage);
+                intent.putExtra("Display", myImage);
                 startActivity(intent);
             }
         });
