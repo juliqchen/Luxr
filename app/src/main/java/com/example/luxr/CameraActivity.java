@@ -140,10 +140,12 @@ public class CameraActivity extends AppCompatActivity {
                     opt.inDensity = DisplayMetrics.DENSITY_LOW;
                     bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri), null, opt);
                     Bitmap edges = detectEdges(bm);
+                    edges.setHasAlpha(true);
                     //top
                     contourImg.setImageBitmap(edges);
                     Bitmap edge2 = edges.copy(edges.getConfig(), true);
                     Bitmap cropped = imageCropping(edge2, bm);
+                    cropped.setHasAlpha(true);
                     //imgPic is the one on bottom
                     imgPic.setImageBitmap(cropped);
 
