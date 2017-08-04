@@ -46,4 +46,10 @@
     <string name="search_hint">colors</string>
     <string name="color">Color</string>
     <string name="type">Type</string>
+<<<<<<< HEAD
+=======
+    <string name="saved">Saved Looks</string>
+    <string name="display">display</string>
+
+>>>>>>> cd23ef7a70d19b465bb42768854e169f52cfa1ca
 </resources>

@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * This class sets the custom adapter as the source for all items to be displayed in the grid
  */
 
-public class GridImageAdapter extends BaseAdapter {
+public class GalleryGridAdapter extends BaseAdapter {
 
     private Activity activity;
     private ArrayList<String> data;
@@ -27,7 +27,7 @@ public class GridImageAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater = null;
 
-    public GridImageAdapter(Activity galleryActivity, ArrayList<String> FilePathStrings, ArrayList<String> FileNameStrings) {
+    public GalleryGridAdapter(Activity galleryActivity, ArrayList<String> FilePathStrings, ArrayList<String> FileNameStrings) {
         this.activity = galleryActivity;
         this.data = FilePathStrings;
         this.name = FileNameStrings;

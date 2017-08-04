@@ -19,7 +19,7 @@ public class GalleryActivity extends AppCompatActivity {
     private ArrayList<String> FileNameStrings;
     private File[] listFile;
     GridView grid;
-    GridImageAdapter adapter;
+    GalleryGridAdapter adapter;
     File file;
 
     @Override
@@ -33,7 +33,7 @@ public class GalleryActivity extends AppCompatActivity {
         listFile = file.listFiles();
 
         grid = (GridView) findViewById(R.id.galleryGrid);
-        adapter = new GridImageAdapter(this, FilePathStrings, FileNameStrings);
+        adapter = new GalleryGridAdapter(this, FilePathStrings, FileNameStrings);
         grid.setAdapter(adapter);
 
 
@@ -75,8 +75,17 @@ public class GalleryActivity extends AppCompatActivity {
         } else if (id == R.id.action_style){
             styleClicked();
             return true;
+        }else if (id == R.id.action_favs){
+            favsClicked();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void favsClicked() {
+        View v = new View(this);
+        Intent intent = new Intent(v.getContext(), FavsActivity.class);
+        startActivity(intent);
     }
 
     public void styleClicked(){

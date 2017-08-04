@@ -1,78 +1,28 @@
 package com.example.luxr;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Spinner;
-
-import java.io.File;
-import java.util.ArrayList;
 
 /**
- * Created by jenniferhu on 6/30/17.
+ * Created by jenniferhu on 8/3/17.
  */
 
-public class StyleActivity extends AppCompatActivity {
-    File file;
-    ArrayList<String> FilePathStrings;
-    ArrayList<String> FileNameStrings;
-    File[] listFile;
-    GridView grid;
-    StyleGridAdapter adapter;
-    ImageView items;
-
+public class FullScreenImageView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_style);
+        setContentView(R.layout.display);
 
-        //populating gridview with gallery images
-        file = FileHand.getMyDir();
-        FilePathStrings = FileHand.getFilePathStrings();
-        FileNameStrings = FileHand.getFileNameStrings();
-        listFile = file.listFiles();
-
-        grid = (GridView) findViewById(R.id.styleGrid);
-        adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
-        grid.setAdapter(adapter);
-
-        //spinner for style activity
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.style_spinner, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
-
-        //save button
-        Button save = (Button) findViewById(R.id.save);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //new intent goes to faves/saved looks page
-                Intent intent = new Intent(view.getContext(), FavsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        //drag and drop from gridview onto imageview
-        grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
-
-                return true;
-            }
-        });
-
+        ImageView Fullscreen = (ImageView) findViewById(R.id.display);
+        Bitmap Image = (Bitmap) getIntent().getParcelableExtra("Display");
+        Fullscreen.setImageBitmap(Image);
     }
-
     //menu stuff
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -147,3 +97,4 @@ public class StyleActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
