@@ -53,7 +53,7 @@ public class FavsActivity extends AppCompatActivity {
                 ImageView imageSelected = parent.getChildAt(pos-lv.getFirstVisiblePosition()).findViewById(R.id.favsGrid);
                 imageSelected.buildDrawingCache();
                 Bitmap myImage = ((BitmapDrawable)imageSelected.getDrawable()).getBitmap();
-                Intent intent = new Intent(view.getContext(), FullScreenImageView.class);
+                Intent intent = new Intent(FavsActivity.this, FullScreenImageView.class);
                 intent.putExtra("Display", myImage);
                 startActivity(intent);
             }

@@ -19,7 +19,7 @@ public class GalleryActivity extends AppCompatActivity {
     private ArrayList<String> FileNameStrings;
     private File[] listFile;
     GridView grid;
-    GridImageAdapter adapter;
+    GalleryGridAdapter adapter;
     File file;
 
     @Override
@@ -33,7 +33,7 @@ public class GalleryActivity extends AppCompatActivity {
         listFile = file.listFiles();
 
         grid = (GridView) findViewById(R.id.galleryGrid);
-        adapter = new GridImageAdapter(this, FilePathStrings, FileNameStrings);
+        adapter = new GalleryGridAdapter(this, FilePathStrings, FileNameStrings);
         grid.setAdapter(adapter);
 
 
