@@ -125,8 +125,6 @@ public class CameraActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
         //if the user chooses OK, the code inside braces will execute
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST) {
@@ -136,9 +134,19 @@ public class CameraActivity extends AppCompatActivity {
                 Uri takenPhotoUri = getPhotoFileUri(fileName);
                 System.out.println("Actual: " + takenPhotoUri);
                 try {
-                    bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri));
-                    imgPic.setImageBitmap(bm);
-                    contourImg.setImageBitmap(bm);
+                    BitmapFactory.Options opt = new BitmapFactory.Options();
+                    opt.inSampleSize = 6;
+                    opt.inMutable = true;
+                    opt.inDensity = DisplayMetrics.DENSITY_LOW;
+                    bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri), null, opt);
+                    Bitmap edges = detectEdges(bm);
+                    //top
+                    contourImg.setImageBitmap(edges);
+                    Bitmap edge2 = edges.copy(edges.getConfig(), true);
+                    Bitmap cropped = imageCropping(edge2, bm);
+                    //imgPic is the one on bottom
+                    imgPic.setImageBitmap(cropped);
+
                     FileHand fileHand = new FileHand(bm, this.getApplicationContext());
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
