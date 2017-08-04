@@ -1,5 +1,6 @@
 package com.example.luxr;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,8 +11,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,18 +22,24 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import static android.view.View.OnClickListener;
 
 public class CameraActivity extends AppCompatActivity {
 
-    private static final int CAMERA_REQUEST = 10;
+    private static final int CAMERA_REQUEST = 1888;
     private ImageView imgPic;
     private ImageView contourImg;
     private Bitmap contourBm;
     public static MakeHash makeHash = new MakeHash();
-    private Uri imageToUpload;
-    private int sampleSize = 6;
+    private int sampleSize = 4;
+    private String mCurrentPhotoPath;
+    private File photoFile;
+    public final String APP_TAG = "ClosetSpace";
+    private final String fileName = "TEMP.png";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,24 +81,46 @@ public class CameraActivity extends AppCompatActivity {
     //uploadClicked v1.0.0
     public void uploadClicked(View v) {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, getPhotoFileUri(fileName));
+        System.out.println(getPhotoFileUri(fileName));
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            // Start the image capture intent to take photo
+            startActivityForResult(cameraIntent, CAMERA_REQUEST);
 
-        File root = this.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File myDir = new File(root.toString(), "Luxe_Images");
-        if (!myDir.exists()) {
-            myDir.mkdirs();
-            System.out.println("Directory Made: " + myDir.getAbsolutePath().toString());
         }
+    }
 
-        File imgFile = new File(myDir, "TEMP_IMAGE.png");
-        try {
-            imgFile.createNewFile();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public Uri getPhotoFileUri(String fileName) {
+        // Only continue if the SD Card is mounted
+        if (isExternalStorageAvailable()) {
+            // Get safe storage directory for photos
+            // Use `getExternalFilesDir` on Context to access package-specific directories.
+            // This way, we don't need to request external read/write runtime permissions.
+            File mediaStorageDir = new File(
+                    getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
+
+            // Create the storage directory if it does not exist
+            if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+                Log.d(APP_TAG, "failed to create directory");
+            }
+
+            // Return the file target for the photo based on filename
+            File file = new File(mediaStorageDir.getPath() + File.separator + fileName);
+
+            // wrap File object into a content provider
+            // required for API >= 24
+            // See https://guides.codepath.com/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
+            System.out.println(file.getPath().toString());
+            return FileProvider.getUriForFile(CameraActivity.this, "com.example.luxr.fileprovider", file);
         }
+        return null;
+    }
 
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imgFile));
-        imageToUpload = Uri.fromFile(imgFile);
-        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    // Returns true if external storage for photos is available
+    private boolean isExternalStorageAvailable() {
+        String state = Environment.getExternalStorageState();
+        return state.equals(Environment.MEDIA_MOUNTED);
     }
 
     @Override
@@ -97,31 +128,24 @@ public class CameraActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         //if the user chooses OK, the code inside braces will execute
-        if (resultCode == RESULT_OK && requestCode == CAMERA_REQUEST) {
-            if (imageToUpload != null) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST) {
                 //we are hearing back from the camera
+                Bitmap bm;
                 System.out.println("hearing back");
-
-                //Bitmap option setting
-                BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                bitmapOptions.inSampleSize = sampleSize;
-                //bitmapOptions.inDensity = DisplayMetrics.DENSITY_DEVICE_STABLE;
-                bitmapOptions.inMutable = true;
-
-                Bitmap cameraImage = BitmapFactory.decodeFile(imageToUpload.getPath(), bitmapOptions);
-//                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
-                Bitmap imgEdge = detectEdges(cameraImage);
-                imgPic.setImageBitmap(imgEdge);
-                contourImg.setImageBitmap(contourBm);
-
-                Bitmap croppedImage = imageCropping(contourBm, cameraImage);
-                imgPic.setImageBitmap(croppedImage);
-                imgPic.setBackgroundColor(Color.WHITE);
-                System.out.println("File saved");
-                FileHand fileHand = new FileHand(croppedImage, this.getApplicationContext());
+                Uri takenPhotoUri = getPhotoFileUri(fileName);
+                System.out.println("Actual: " + takenPhotoUri);
+                try {
+                    bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri));
+                    imgPic.setImageBitmap(bm);
+                    contourImg.setImageBitmap(bm);
+                    FileHand fileHand = new FileHand(bm, this.getApplicationContext());
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
 
             } else {
-                Toast.makeText(this, "Error while capturing Image", Toast.LENGTH_LONG);
+                super.onActivityResult(requestCode, resultCode, data);
             }
         }
     }
