@@ -3,6 +3,7 @@ package com.example.luxr;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,6 +69,12 @@ public class StyleActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
 
                 return true;
+            }
+        });
+        findViewById(R.id.styleImage).setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                return false;
             }
         });
 
