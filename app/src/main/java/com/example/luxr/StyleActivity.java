@@ -66,8 +66,7 @@ public class StyleActivity extends AppCompatActivity {
         //drag and drop from gridview onto imageview
         grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int i, long l) {
-
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int pos, long l) {
                 return true;
             }
         });
