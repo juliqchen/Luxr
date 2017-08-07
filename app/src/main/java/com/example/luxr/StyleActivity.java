@@ -129,8 +129,6 @@ public class StyleActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
     }
 
     //menu stuff
