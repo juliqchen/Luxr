@@ -152,6 +152,7 @@ public class CameraActivity extends AppCompatActivity {
                     FileHand fileHand = new FileHand(bm, this.getApplicationContext());
                     //get the current image's path
                     mCurrentPhotoPath = fileHand.getPhotoPath();
+                    addToHash(mCurrentPhotoPath);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -160,6 +161,9 @@ public class CameraActivity extends AppCompatActivity {
                 super.onActivityResult(requestCode, resultCode, data);
             }
         }
+    }
+
+    private void addToHash(String mCurrentPhotoPath) {
     }
 
     private Bitmap imageCropping(Bitmap imgEdge, Bitmap orig) {

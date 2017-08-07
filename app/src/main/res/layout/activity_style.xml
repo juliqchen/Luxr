@@ -7,37 +7,37 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/styleImage"
-        android:layout_width="251dp"
-        android:layout_height="459dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="36dp"
-        android:contentDescription="@string/styleImage"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/styleGrid"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/common_google_signin_btn_text_dark_default"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+    <!--<ImageView-->
+        <!--android:id="@+id/styleImage"-->
+        <!--android:layout_width="251dp"-->
+        <!--android:layout_height="459dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_marginTop="36dp"-->
+        <!--android:contentDescription="@string/styleImage"-->
+        <!--app:layout_constraintHorizontal_bias="0.38"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toLeftOf="@+id/styleGrid"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:srcCompat="@color/common_google_signin_btn_text_dark_default"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginEnd="8dp" />-->
 
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/save_look"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="280dp" />
+        tools:layout_editor_absoluteX="293dp" />
 
     <GridView
         android:id="@+id/styleGrid"
@@ -52,5 +52,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="32dp" />
+
+    <RelativeLayout
+        android:id="@+id/styleFrame"
+        android:layout_width="253dp"
+        android:layout_height="548dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="42dp"
+        android:background="#ffffff" >
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

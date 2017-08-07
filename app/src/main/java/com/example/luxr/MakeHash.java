@@ -18,6 +18,14 @@ public class MakeHash extends HashMap {
     private static HashMap<String, ArrayList<String>> jacketColor;
     private static HashMap<String, ArrayList<String>> accessoriesColor;
 
+    private static ArrayList<String> topFiles;
+    private static ArrayList<String> bottomFiles;
+    private static ArrayList<String> dressFiles;
+    private static ArrayList<String> jumpsuitFiles;
+    private static ArrayList<String> shoeFiles;
+    private static ArrayList<String> jacketFiles;
+    private static ArrayList<String> accessoriesFiles;
+
     public MakeHash() {
         closet = new HashMap<>();
 
@@ -44,8 +52,16 @@ public class MakeHash extends HashMap {
         closet.put("Jumpsuits", jumpsuitColor);
         closet.put("Shoes", shoeColor);
         closet.put("Tops", topColor);
-
     }
+
+//    public void addItem(String type, String color, String mCurrentPhotoPath) {
+//        if (type == "Accessories") {
+//            accessoriesColor.put(color, mCurrentPhotoPath);
+//        }
+//
+//    }
+
+
 
     private HashMap<String, ArrayList<String>> putColors(HashMap<String, ArrayList<String>> map) {
         map.put("Red", new ArrayList<String>());

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,47 +36,59 @@ public class StyleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style);
 
-        //populating gridview with gallery images
-        file = FileHand.getMyDir();
-        FilePathStrings = FileHand.getFilePathStrings();
-        FileNameStrings = FileHand.getFileNameStrings();
-        listFile = file.listFiles();
+        if (FileHand.getMyDir() != null) {
+            //populating gridview with gallery images
+            file = FileHand.getMyDir();
+            FilePathStrings = FileHand.getFilePathStrings();
+            FileNameStrings = FileHand.getFileNameStrings();
+            listFile = file.listFiles();
 
-        grid = (GridView) findViewById(R.id.styleGrid);
-        adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
-        grid.setAdapter(adapter);
+            grid = (GridView) findViewById(R.id.styleGrid);
+            adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
+            grid.setAdapter(adapter);
 
-        //spinner for style activity
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.style_spinner, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
+            //spinner for style activity
+            Spinner spinner = (Spinner) findViewById(R.id.spinner);
+            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                    R.array.style_spinner, android.R.layout.simple_spinner_item);
+            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(spinnerAdapter);
 
-        //save button
-        Button save = (Button) findViewById(R.id.save);
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //new intent goes to faves/saved looks page
-                Intent intent = new Intent(view.getContext(), FavsActivity.class);
-                startActivity(intent);
-            }
-        });
+            //save button
+            Button save = (Button) findViewById(R.id.save);
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //new intent goes to faves/saved looks page
+                    Intent intent = new Intent(view.getContext(), FavsActivity.class);
+                    startActivity(intent);
+                }
+            });
 
-        //drag and drop from gridview onto imageview
-        grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int pos, long l) {
-                return true;
-            }
-        });
-        findViewById(R.id.styleImage).setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
-                return false;
-            }
-        });
+            //drag and drop from gridview onto imageview
+            grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int pos, long l) {
+                    return true;
+                }
+            });
+
+            grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                }
+            });
+
+            findViewById(R.id.styleImage).setOnDragListener(new View.OnDragListener() {
+                @Override
+                public boolean onDrag(View view, DragEvent dragEvent) {
+                    return false;
+                }
+            });
+        } else {
+            Toast.makeText(StyleActivity.this, "You have no photos :(", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

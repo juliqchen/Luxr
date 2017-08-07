@@ -27,22 +27,27 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        file = FileHand.getMyDir();
-        FilePathStrings = FileHand.getFilePathStrings();
-        FileNameStrings = FileHand.getFileNameStrings();
-        listFile = file.listFiles();
+        if (FileHand.getMyDir() != null) {
+            file = FileHand.getMyDir();
+            FilePathStrings = FileHand.getFilePathStrings();
+            FileNameStrings = FileHand.getFileNameStrings();
+            listFile = file.listFiles();
 
-        grid = (GridView) findViewById(R.id.galleryGrid);
-        adapter = new GalleryGridAdapter(this, FilePathStrings, FileNameStrings);
-        grid.setAdapter(adapter);
+            grid = (GridView) findViewById(R.id.galleryGrid);
+            adapter = new GalleryGridAdapter(this, FilePathStrings, FileNameStrings);
+            grid.setAdapter(adapter);
 
 
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(GalleryActivity.this, "" + 100, Toast.LENGTH_SHORT).show();
-            }
-        });
+            grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Toast.makeText(GalleryActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        } else {
+            Toast.makeText(GalleryActivity.this, "You have no photos :(", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
