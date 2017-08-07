@@ -42,7 +42,7 @@ public class StyleGridAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return i;
+        return BitmapFactory.decodeFile(data.get(i));
     }
 
     @Override
@@ -68,5 +68,6 @@ public class StyleGridAdapter extends BaseAdapter {
         imageView.setImageBitmap(myBitmap);
         return imageView;
     }
+
 
 }
