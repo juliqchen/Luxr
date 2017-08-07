@@ -7,7 +7,7 @@ import java.util.HashMap;
  * Created by jenniferhu on 7/11/17.
  */
 
-public class MakeHash {
+public class MakeHash extends HashMap {
 
     public static HashMap<String, HashMap<String, ArrayList<String>>> closet;
     private static HashMap<String, ArrayList<String>> topColor;
@@ -15,6 +15,8 @@ public class MakeHash {
     private static HashMap<String, ArrayList<String>> dressColor;
     private static HashMap<String, ArrayList<String>> jumpsuitColor;
     private static HashMap<String, ArrayList<String>> shoeColor;
+    private static HashMap<String, ArrayList<String>> jacketColor;
+    private static HashMap<String, ArrayList<String>> accessoriesColor;
 
     public MakeHash() {
         closet = new HashMap<>();
@@ -24,18 +26,25 @@ public class MakeHash {
         dressColor = new HashMap<>();
         jumpsuitColor = new HashMap<>();
         shoeColor = new HashMap<>();
+        jacketColor = new HashMap<>();
+        accessoriesColor = new HashMap<>();
 
         topColor = putColors(topColor);
         bottomColor = putColors(bottomColor);
         dressColor = putColors(dressColor);
         jumpsuitColor = putColors(jumpsuitColor);
         shoeColor = putColors(shoeColor);
+        jacketColor = putColors(jacketColor);
+        accessoriesColor = putColors(accessoriesColor);
 
-        closet.put("Tops", topColor);
+        closet.put("Accessories", accessoriesColor);
         closet.put("Bottoms", bottomColor);
         closet.put("Dresses", dressColor);
+        closet.put("Jackets", jacketColor);
         closet.put("Jumpsuits", jumpsuitColor);
         closet.put("Shoes", shoeColor);
+        closet.put("Tops", topColor);
+
     }
 
     private HashMap<String, ArrayList<String>> putColors(HashMap<String, ArrayList<String>> map) {

@@ -135,7 +135,7 @@ public class CameraActivity extends AppCompatActivity {
                 System.out.println("Actual: " + takenPhotoUri);
                 try {
                     BitmapFactory.Options opt = new BitmapFactory.Options();
-                    opt.inSampleSize = 6;
+                    //opt.inSampleSize = 6;
                     opt.inMutable = true;
                     opt.inDensity = DisplayMetrics.DENSITY_LOW;
                     bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri), null, opt);
@@ -150,6 +150,8 @@ public class CameraActivity extends AppCompatActivity {
                     imgPic.setImageBitmap(cropped);
 
                     FileHand fileHand = new FileHand(bm, this.getApplicationContext());
+                    //get the current image's path
+                    mCurrentPhotoPath = fileHand.getPhotoPath();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
