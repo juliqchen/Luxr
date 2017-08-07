@@ -27,6 +27,7 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
+<<<<<<< HEAD
         if (FileHand.getMyDir() != null) {
             file = FileHand.getMyDir();
             FilePathStrings = FileHand.getFilePathStrings();
@@ -47,6 +48,23 @@ public class GalleryActivity extends AppCompatActivity {
             Toast.makeText(GalleryActivity.this, "You have no photos :(", Toast.LENGTH_SHORT).show();
         }
 
+=======
+        file = FileHand.getMyDir();
+        FilePathStrings = FileHand.getFilePathStrings();
+        FileNameStrings = FileHand.getFileNameStrings();
+        listFile = file.listFiles();
+
+        grid = (GridView) findViewById(R.id.galleryGrid);
+        adapter = new GalleryGridAdapter(this, FilePathStrings, FileNameStrings);
+        grid.setAdapter(adapter);
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(GalleryActivity.this, "" + 100, Toast.LENGTH_SHORT).show();
+            }
+        });
+>>>>>>> 21234ab367394d2dca38d162516187f0df4d7dcd
     }
 
     @Override

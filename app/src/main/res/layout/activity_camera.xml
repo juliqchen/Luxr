@@ -41,7 +41,7 @@
         app:fabSize="mini"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|right"
-        app:srcCompat="@mipmap/ic_done_black_24dp" />
+        app:srcCompat="@mipmap/ic_forward_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>
 
