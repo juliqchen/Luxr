@@ -92,6 +92,10 @@ public class FileHand extends AppCompatActivity{
         return imageFileName;
     }
 
+    public String getPhotoPath() {
+        return mCurrentPhotoPath;
+    }
+
     public static File getMyDir() {
         return myDir;
     }

@@ -44,13 +44,6 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), GalleryActivity.class);
                 startActivity(intent);
 
-                //calls textview, works hella jank --  only shows up when button is pressed
-                //but i cant seem to be able to put it outside the button idk why
-                TextView colorSelection = (TextView)findViewById(R.id.colorselection);
-                TextView typeSelection = (TextView)findViewById(R.id.typeselection);
-                colorSelection.setText(color);
-                typeSelection.setText(type);
-
                 //toast to show which color and type was selected
                 Toast.makeText(getApplicationContext(), color + " and " + type + " were selected.", Toast.LENGTH_LONG).show();
             }
@@ -65,8 +58,8 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Expanded.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),
+                        //expandableListTitle.get(groupPosition) + " List Expanded.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,9 +67,9 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
         expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),
+                        //expandableListTitle.get(groupPosition) + " List Collapsed.",
+                        //Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -90,23 +83,18 @@ public class ConfirmPhotoActivity extends AppCompatActivity {
 //                                expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition),
 //                        Toast.LENGTH_SHORT).show();
 
-                //onclicklistener for options in the list
-                //doesnt work rn?? idk why
-//                if (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
-//                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-//                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
-//                }
-                while (expandableListTitle.get(groupPosition).toLowerCase().equals("colors") && color == null){
+                if (expandableListTitle.get(groupPosition).toLowerCase().equals("colors")) {
                     color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
+                    TextView colorSelection = (TextView)findViewById(R.id.colorselection);
+                    colorSelection.setText(color);
+                    //Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
                 }
-//                if (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && color == null){
-//                    color = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-//                    Toast.makeText(getApplicationContext(), color + " was chosen.", Toast.LENGTH_SHORT).show();
-//                }
-                while (expandableListTitle.get(groupPosition).toLowerCase().equals("types") && type == null){
+
+                if (expandableListTitle.get(groupPosition).toLowerCase().equals("types")) {
                     type = expandableListDetail.get(expandableListTitle.get(groupPosition)).get(childPosition);
-                    Toast.makeText(getApplicationContext(), type + " was chosen.", Toast.LENGTH_SHORT).show();
+                    TextView typeSelection = (TextView)findViewById(R.id.typeselection);
+                    typeSelection.setText(type);
+                    //Toast.makeText(getApplicationContext(), type + " was chosen.", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
