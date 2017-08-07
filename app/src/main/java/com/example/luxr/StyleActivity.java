@@ -1,8 +1,11 @@
 package com.example.luxr;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,6 +34,8 @@ public class StyleActivity extends AppCompatActivity {
     GridView grid;
     StyleGridAdapter adapter;
     ImageView items;
+    String msg;
+    private android.widget.RelativeLayout.LayoutParams layoutParams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -69,27 +75,65 @@ public class StyleActivity extends AppCompatActivity {
             grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int pos, long l) {
+                    ClipData.Item item = (ClipData.Item) parent.getItemAtPosition(pos);
+                    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+                    ClipData dragData = new ClipData(view.getTag().toString(), mimeTypes, item);
+
+                    View.DragShadowBuilder myShadow = new View.DragShadowBuilder();
+                    view.startDrag(dragData,myShadow,null,0);
                     return true;
                 }
             });
 
-            grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            grid.setOnDragListener(new View.OnDragListener() {
                 @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                public boolean onDrag(View v, DragEvent event) {
+                    switch(event.getAction()){
+                        case DragEvent.ACTION_DRAG_STARTED:
+                            layoutParams = (RelativeLayout.LayoutParams)v.getLayoutParams();
+                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_STARTED");
+                            //do nothing
+                            break;
 
-                }
-            });
+                        case DragEvent.ACTION_DRAG_ENTERED:
+                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENTERED");
+                            int x_cord = (int) event.getX();
+                            int y_cord = (int) event.getY();
+                            break;
 
-            findViewById(R.id.styleImage).setOnDragListener(new View.OnDragListener() {
-                @Override
-                public boolean onDrag(View view, DragEvent dragEvent) {
-                    return false;
+                        case DragEvent.ACTION_DRAG_EXITED :
+                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_EXITED");
+                            x_cord = (int) event.getX();
+                            y_cord = (int) event.getY();
+                            layoutParams.leftMargin = x_cord;
+                            layoutParams.topMargin = y_cord;
+                            v.setLayoutParams(layoutParams);
+                            break;
+
+                        case DragEvent.ACTION_DRAG_LOCATION  :
+                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_LOCATION");
+                            x_cord = (int) event.getX();
+                            y_cord = (int) event.getY();
+                            break;
+
+                        case DragEvent.ACTION_DRAG_ENDED   :
+                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENDED");
+                            // Do nothing
+                            break;
+
+                        case DragEvent.ACTION_DROP:
+                            Log.d(msg, "ACTION_DROP event");
+                            // Do nothing
+                            break;
+
+                        default: break;
+                    }
+                    return true;
                 }
             });
         } else {
             Toast.makeText(StyleActivity.this, "You have no photos :(", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     //menu stuff
