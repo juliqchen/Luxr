@@ -36,14 +36,12 @@ public class GalleryActivity extends AppCompatActivity {
         adapter = new GalleryGridAdapter(this, FilePathStrings, FileNameStrings);
         grid.setAdapter(adapter);
 
-
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(GalleryActivity.this, "" + 100, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
