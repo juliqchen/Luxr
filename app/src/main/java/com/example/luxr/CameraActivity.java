@@ -1,10 +1,8 @@
 package com.example.luxr;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,12 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import static android.view.View.OnClickListener;
 
@@ -135,7 +130,7 @@ public class CameraActivity extends AppCompatActivity {
                 System.out.println("Actual: " + takenPhotoUri);
                 try {
                     BitmapFactory.Options opt = new BitmapFactory.Options();
-                    //opt.inSampleSize = 6;
+                    opt.inSampleSize = 6;
                     opt.inMutable = true;
                     opt.inDensity = DisplayMetrics.DENSITY_LOW;
                     bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri), null, opt);
