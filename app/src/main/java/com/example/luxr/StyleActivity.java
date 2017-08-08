@@ -1,11 +1,8 @@
 package com.example.luxr;
 
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
@@ -150,7 +147,6 @@ public class StyleActivity extends AppCompatActivity {
     float x_cord;
     float y_cord;
     float gapX, gapY;
-
 
     private void attachDragDropListen(final ImageView img) {
         img.setOnTouchListener(new View.OnTouchListener() {

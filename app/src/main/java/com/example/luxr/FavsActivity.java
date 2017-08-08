@@ -1,9 +1,8 @@
 package com.example.luxr;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,12 +48,10 @@ public class FavsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                 //when a gridview image is clicked
                 //a full screen image of the image clicked will be displayed
-                GridView lv = (GridView) parent;
-                ImageView imageSelected = parent.getChildAt(pos-lv.getFirstVisiblePosition()).findViewById(R.id.favsGrid);
-                imageSelected.buildDrawingCache();
-                Bitmap myImage = ((BitmapDrawable)imageSelected.getDrawable()).getBitmap();
+                ImageView item = (ImageView) parent.getItemAtPosition(pos);
                 Intent intent = new Intent(FavsActivity.this, FullScreenImageView.class);
-                intent.putExtra("Display", myImage);
+
+                intent.putExtra("Display", (Parcelable) item);
                 startActivity(intent);
             }
         });
