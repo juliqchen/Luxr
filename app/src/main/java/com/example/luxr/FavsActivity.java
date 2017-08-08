@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class FavsActivity extends AppCompatActivity {
     ArrayList<String> FileNameStrings;
     File[] listFile;
     GridView grid;
-    StyleGridAdapter adapter;
+    FavsGridAdapter adapter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,17 +35,38 @@ public class FavsActivity extends AppCompatActivity {
 
         //populating gridview with saved_looks images
         //copy-pasted from StyleActivity should prob doublecheck this
-        file = FileHand.getMyDir();
-        FilePathStrings = FileHand.getFilePathStrings();
-        FileNameStrings = FileHand.getFileNameStrings();
+        file = StyleActivity.getMyStyleDir();
+        System.out.println("Favs Source: " + file.getAbsolutePath());
+
+        FilePathStrings = StyleActivity.getOutfitFilePathStrings();
+        FileNameStrings = StyleActivity.getOutfitFileNameStrings();
+        for (String a : FileNameStrings) {
+            System.out.println(a);
+        }
         listFile = file.listFiles();
 
         grid = (GridView) findViewById(R.id.favsGrid);
-        adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
+        adapter = new FavsGridAdapter(this, FilePathStrings, FileNameStrings);
         grid.setAdapter(adapter);
+
+//        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+//                //when a gridview image is clicked
+//                //a full screen image of the image clicked will be displayed
+//                GridView lv = (GridView) parent;
+//                ImageView imageSelected = parent.getChildAt(pos-lv.getFirstVisiblePosition()).findViewById(R.id.favsGrid);
+//                imageSelected.buildDrawingCache();
+//                Bitmap myImage = ((BitmapDrawable)imageSelected.getDrawable()).getBitmap();
+//                Intent intent = new Intent(FavsActivity.this, FullScreenImageView.class);
+//                intent.putExtra("Display", myImage);
+//                startActivity(intent);
+//            }
+//        });
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+<<<<<<< HEAD
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                 //when a gridview image is clicked
                 //a full screen image of the image clicked will be displayed
@@ -53,6 +75,10 @@ public class FavsActivity extends AppCompatActivity {
 
                 intent.putExtra("Display", (Parcelable) item);
                 startActivity(intent);
+=======
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(FavsActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
+>>>>>>> refs/remotes/origin/master
             }
         });
 

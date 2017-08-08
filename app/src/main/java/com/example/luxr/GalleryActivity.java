@@ -29,8 +29,12 @@ public class GalleryActivity extends AppCompatActivity {
 
         if (FileHand.getMyDir() != null) {
             file = FileHand.getMyDir();
+            System.out.println("Gallery Source: " + file.getAbsolutePath());
             FilePathStrings = FileHand.getFilePathStrings();
             FileNameStrings = FileHand.getFileNameStrings();
+            for (String a : FileNameStrings) {
+                System.out.println(a);
+            }
             listFile = file.listFiles();
 
             grid = (GridView) findViewById(R.id.galleryGrid);
@@ -46,6 +50,7 @@ public class GalleryActivity extends AppCompatActivity {
         } else {
             Toast.makeText(GalleryActivity.this, "You have no photos :(", Toast.LENGTH_SHORT).show();
         }
+<<<<<<< HEAD
 
         file = FileHand.getMyDir();
         FilePathStrings = FileHand.getFilePathStrings();
@@ -62,6 +67,8 @@ public class GalleryActivity extends AppCompatActivity {
                 Toast.makeText(GalleryActivity.this, "" + 100, Toast.LENGTH_SHORT).show();
             }
         });
+=======
+>>>>>>> refs/remotes/origin/master
     }
 
     @Override
