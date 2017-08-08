@@ -1,11 +1,10 @@
 package com.example.luxr;
 
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
@@ -23,7 +22,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by jenniferhu on 6/30/17.
@@ -31,15 +33,22 @@ import java.util.ArrayList;
 
 public class StyleActivity extends AppCompatActivity {
     File file;
-    ArrayList<String> FilePathStrings;
-    ArrayList<String> FileNameStrings;
+    private static ArrayList<String> StyleFilePathStrings = new ArrayList<>();
+    private static ArrayList<String> StyleFileNameStrings = new ArrayList<>();
+    private static ArrayList<String> outfitFilePathStrings = new ArrayList<>();
+    private static ArrayList<String> outfitFileNameStrings = new ArrayList<>();
     File[] listFile;
     GridView grid;
     StyleGridAdapter adapter;
     ImageView items;
     String msg;
     RelativeLayout layout;
+    public static File myStyleDir;
     private android.widget.RelativeLayout.LayoutParams layoutParams;
+    String mCurrentPhotoPath;
+    private String imageFileName;
+    private String mCurrentPhotoName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -49,12 +58,12 @@ public class StyleActivity extends AppCompatActivity {
         if (FileHand.getMyDir() != null) {
             //populating gridview with gallery images
             file = FileHand.getMyDir();
-            FilePathStrings = FileHand.getFilePathStrings();
-            FileNameStrings = FileHand.getFileNameStrings();
+            StyleFilePathStrings = FileHand.getFilePathStrings();
+            StyleFileNameStrings = FileHand.getFileNameStrings();
             listFile = file.listFiles();
 
             grid = (GridView) findViewById(R.id.styleGrid);
-            adapter = new StyleGridAdapter(this, FilePathStrings, FileNameStrings);
+            adapter = new StyleGridAdapter(this, StyleFilePathStrings, StyleFileNameStrings);
             grid.setAdapter(adapter);
 
             //spinner for style activity
@@ -70,6 +79,9 @@ public class StyleActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     //new intent goes to faves/saved looks page
+                    Bitmap outfit = layout.getDrawingCache();
+                    createImageFile(outfit);
+
                     Intent intent = new Intent(view.getContext(), FavsActivity.class);
                     startActivity(intent);
                 }
@@ -81,9 +93,6 @@ public class StyleActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                     Toast.makeText(StyleActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
                     Bitmap bm = (Bitmap) grid.getAdapter().getItem(i);
-
-                    System.out.println(parent.getItemAtPosition(i));
-
                     ImageView newView = new ImageView(StyleActivity.this);
                     newView.setImageBitmap(bm);
                     RelativeLayout layout = (RelativeLayout) StyleActivity.this.findViewById(R.id.styleFrame);
@@ -93,6 +102,7 @@ public class StyleActivity extends AppCompatActivity {
             });
 
             layout = (RelativeLayout) findViewById(R.id.styleFrame);
+            layout.setDrawingCacheEnabled(true);
 
             //dragging
             layout.setOnDragListener(new View.OnDragListener() {
@@ -194,22 +204,6 @@ public class StyleActivity extends AppCompatActivity {
     }
 
 
-    //drag and drop from gridview onto imageview
-//            grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//                @Override
-//                public boolean onItemLongClick(AdapterView<?> parent, View view, int pos, long l) {
-//                    ClipData.Item item = (ClipData.Item) parent.getItemAtPosition(pos);
-//                    String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
-//                    ClipData dragData = new ClipData(view.getTag().toString(), mimeTypes, item);
-//
-//                    View.DragShadowBuilder myShadow = new View.DragShadowBuilder();
-//                    view.startDrag(dragData,myShadow,null,0);
-//                    return true;
-//                }
-//            });
-
-
-
     //menu stuff
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -252,6 +246,74 @@ public class StyleActivity extends AppCompatActivity {
         View v = new View(this);
         Intent intent = new Intent(v.getContext(),FavsActivity.class);
         startActivity(intent);
+    }
+
+    private File createImageFile(Bitmap bitmap) {
+        File root = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        myStyleDir = new File(root.toString(), "Luxe_Outfits");
+        if (!myStyleDir.exists()) {
+            myStyleDir.mkdirs();
+            System.out.println("Directory Made: " + myStyleDir.getAbsolutePath().toString());
+        }
+
+        File imgFile = new File(myStyleDir, createFileName());
+        try {
+            imgFile.createNewFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FileOutputStream out = new FileOutputStream(imgFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.flush();
+            out.close();
+            System.out.println("File saved as PNG");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = imgFile.getAbsolutePath();
+        outfitFilePathStrings.add(mCurrentPhotoPath);
+
+        System.out.println("mCPP: " + mCurrentPhotoPath);
+
+        for (String path: outfitFilePathStrings) {
+            scanMedia(path);
+            System.out.println("File Scanned");
+        }
+
+        return imgFile;
+    }
+
+    private void scanMedia(String path) {
+        File file = new File(path);
+        Uri uri = Uri.fromFile(file);
+        Intent scanFileIntent = new Intent(
+                Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        sendBroadcast(scanFileIntent);
+    }
+
+    private String createFileName() {
+        //create an image file name with timestamp
+        String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(new Date());
+        imageFileName = "LuxeOutfit" + timestamp + ".png";
+        mCurrentPhotoName = imageFileName.trim();
+        outfitFileNameStrings.add(mCurrentPhotoName);
+        return imageFileName;
+    }
+
+    public static File getMyStyleDir() {
+        return myStyleDir;
+    }
+
+    public static ArrayList<String> getOutfitFilePathStrings() {
+        return outfitFilePathStrings;
+    }
+
+    public static ArrayList<String> getOutfitFileNameStrings() {
+        return outfitFileNameStrings;
     }
 
     public void styleClicked(){
