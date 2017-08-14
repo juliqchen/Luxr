@@ -130,7 +130,7 @@ public class CameraActivity extends AppCompatActivity {
                 System.out.println("Actual: " + takenPhotoUri);
                 try {
                     BitmapFactory.Options opt = new BitmapFactory.Options();
-                    //opt.inSampleSize = 6;
+                    opt.inSampleSize = 9;
                     opt.inMutable = true;
                     opt.inDensity = DisplayMetrics.DENSITY_LOW;
                     bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri), null, opt);

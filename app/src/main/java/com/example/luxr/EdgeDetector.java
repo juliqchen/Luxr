@@ -3,16 +3,12 @@ package com.example.luxr;
 import android.graphics.Bitmap;
 
 import org.opencv.android.Utils;
-import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Scalar;
 import org.opencv.core.Size;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +22,7 @@ public class EdgeDetector {
     Mat rgba;
     Mat hierarchy;
     List<MatOfPoint> contours;
-    int threshold = 90;
+    int threshold = 70;
 
     EdgeDetector(Bitmap bitmap) {
         rgba = new Mat();
@@ -35,7 +31,7 @@ public class EdgeDetector {
         Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
         Imgproc.blur(edges, edges, new Size(3, 3));
 
-        Imgproc.Canny(edges, edges, threshold, threshold + 20, 3, false);
+        Imgproc.Canny(edges, edges, threshold, threshold *3, 3, false);
 
 //        Mat dest = new Mat(rgba.size(), CvType.CV_8UC1);
 //        Core.add(dest, Scalar.all(0), dest);

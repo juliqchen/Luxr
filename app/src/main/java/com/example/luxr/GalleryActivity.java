@@ -50,25 +50,6 @@ public class GalleryActivity extends AppCompatActivity {
         } else {
             Toast.makeText(GalleryActivity.this, "You have no photos :(", Toast.LENGTH_SHORT).show();
         }
-<<<<<<< HEAD
-
-        file = FileHand.getMyDir();
-        FilePathStrings = FileHand.getFilePathStrings();
-        FileNameStrings = FileHand.getFileNameStrings();
-        listFile = file.listFiles();
-
-        grid = (GridView) findViewById(R.id.galleryGrid);
-        adapter = new GalleryGridAdapter(this, FilePathStrings, FileNameStrings);
-        grid.setAdapter(adapter);
-
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(GalleryActivity.this, "" + 100, Toast.LENGTH_SHORT).show();
-            }
-        });
-=======
->>>>>>> refs/remotes/origin/master
     }
 
     @Override

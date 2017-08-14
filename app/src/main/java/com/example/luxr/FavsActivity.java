@@ -66,19 +66,15 @@ public class FavsActivity extends AppCompatActivity {
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-<<<<<<< HEAD
-            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
-                //when a gridview image is clicked
-                //a full screen image of the image clicked will be displayed
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
+                Toast.makeText(FavsActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
+
                 ImageView item = (ImageView) parent.getItemAtPosition(pos);
                 Intent intent = new Intent(FavsActivity.this, FullScreenImageView.class);
 
                 intent.putExtra("Display", (Parcelable) item);
                 startActivity(intent);
-=======
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(FavsActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
->>>>>>> refs/remotes/origin/master
+
             }
         });
 
