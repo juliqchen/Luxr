@@ -130,18 +130,24 @@ public class CameraActivity extends AppCompatActivity {
                 System.out.println("Actual: " + takenPhotoUri);
                 try {
                     BitmapFactory.Options opt = new BitmapFactory.Options();
-                    //opt.inSampleSize = 6;
+                    opt.inSampleSize = 6;
                     opt.inMutable = true;
                     opt.inDensity = DisplayMetrics.DENSITY_LOW;
                     bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(takenPhotoUri), null, opt);
                     Bitmap edges = detectEdges(bm);
                     edges.setHasAlpha(true);
                     //top
-                    contourImg.setImageBitmap(edges);
-                    Bitmap edge2 = edges.copy(edges.getConfig(), true);
+                    contourImg.setImageBitmap(contourBm);
+//                    Bitmap edge2 = edges.copy(edges.getConfig(), true);
+//                    Bitmap cropped = imageCropping(edge2, bm);
+                    Bitmap edge2 = contourBm.copy(contourBm.getConfig(), true);
                     Bitmap cropped = imageCropping(edge2, bm);
+//                    contourImg.setImageBitmap(contourBm);
+//                    Bitmap contour2 = contourBm.copy(contourBm.getConfig(), true);
+//                    Bitmap cropped = imageCropping(contour2, bm);
+
                     cropped.setHasAlpha(true);
-                    //imgPic is the one on bottom
+                    //imgPic bot
                     imgPic.setImageBitmap(cropped);
 
                     FileHand fileHand = new FileHand(bm, this.getApplicationContext());

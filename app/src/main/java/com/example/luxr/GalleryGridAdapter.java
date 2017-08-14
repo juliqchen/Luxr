@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,7 +26,7 @@ public class GalleryGridAdapter extends BaseAdapter {
     private Activity activity;
     private ArrayList<String> data;
     private ArrayList<String> name;
-
+    private boolean isImageFitToScreen;
     private static LayoutInflater inflater = null;
 
     public GalleryGridAdapter(Activity galleryActivity, ArrayList<String> FilePathStrings, ArrayList<String> FileNameStrings) {
@@ -66,6 +68,7 @@ public class GalleryGridAdapter extends BaseAdapter {
 
         Bitmap myBitmap = BitmapFactory.decodeFile(data.get(i));
         imageView.setImageBitmap(myBitmap);
+
         return imageView;
     }
 
