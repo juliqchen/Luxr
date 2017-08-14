@@ -161,7 +161,6 @@ public class StyleActivity extends AppCompatActivity {
     float y_cord;
     float gapX, gapY;
 
-
     private void attachDragDropListen(final ImageView img) {
         img.setOnTouchListener(new View.OnTouchListener() {
             @Override

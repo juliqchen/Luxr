@@ -3,14 +3,11 @@ package com.example.luxr;
 import android.graphics.Bitmap;
 
 import org.opencv.android.Utils;
-import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.core.Size;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
@@ -36,7 +33,6 @@ public class EdgeDetector {
         rgba.convertTo(rgba, CvType.CV_8UC1);
         Imgproc.cvtColor(rgba, edges, Imgproc.COLOR_RGB2GRAY, 4);
         Imgproc.blur(edges, edges, new Size(3, 3));
-//
         Imgproc.Canny(edges, edges, threshold, threshold * 2,  3, false);
 
 //        Mat dest = new Mat(rgba.size(), CvType.CV_8UC1);

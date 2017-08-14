@@ -2,6 +2,7 @@ package com.example.luxr;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,8 +66,15 @@ public class FavsActivity extends AppCompatActivity {
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
                 Toast.makeText(FavsActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
+
+                ImageView item = (ImageView) parent.getItemAtPosition(pos);
+                Intent intent = new Intent(FavsActivity.this, FullScreenImageView.class);
+
+                intent.putExtra("Display", (Parcelable) item);
+                startActivity(intent);
+
             }
         });
 
