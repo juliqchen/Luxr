@@ -11,6 +11,7 @@ import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,113 +49,119 @@ public class StyleActivity extends AppCompatActivity {
     String mCurrentPhotoPath;
     private String imageFileName;
     private String mCurrentPhotoName;
+    ImageView newView;
 
+    //try
+    ScaleGestureDetector scaleGestureDetector;
+    float scale = 1f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_style);
+        grid = (GridView) findViewById(R.id.styleGrid);
 
+        //populating gridview with gallery images if they exist
         if (FileHand.getMyDir() != null) {
-            //populating gridview with gallery images
             file = FileHand.getMyDir();
             StyleFilePathStrings = FileHand.getFilePathStrings();
             StyleFileNameStrings = FileHand.getFileNameStrings();
             listFile = file.listFiles();
-
-            grid = (GridView) findViewById(R.id.styleGrid);
             adapter = new StyleGridAdapter(this, StyleFilePathStrings, StyleFileNameStrings);
             grid.setAdapter(adapter);
-
-            //spinner for style activity
-            Spinner spinner = (Spinner) findViewById(R.id.spinner);
-            ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
-                    R.array.style_spinner, android.R.layout.simple_spinner_item);
-            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(spinnerAdapter);
-
-            //save button
-            Button save = (Button) findViewById(R.id.save);
-            save.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //new intent goes to faves/saved looks page
-                    Bitmap outfit = layout.getDrawingCache();
-                    createImageFile(outfit);
-
-                    Intent intent = new Intent(view.getContext(), FavsActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-            //add image to the left space
-            grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
-                    Toast.makeText(StyleActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
-                    Bitmap bm = (Bitmap) grid.getAdapter().getItem(i);
-                    ImageView newView = new ImageView(StyleActivity.this);
-                    newView.setImageBitmap(bm);
-                    RelativeLayout layout = (RelativeLayout) StyleActivity.this.findViewById(R.id.styleFrame);
-                    layout.addView(newView);
-                    attachDragDropListen(newView);
-                }
-            });
-
-            layout = (RelativeLayout) findViewById(R.id.styleFrame);
-            layout.setDrawingCacheEnabled(true);
-
-            //dragging
-            layout.setOnDragListener(new View.OnDragListener() {
-                @Override
-                public boolean onDrag(View v, DragEvent event) {
-                    layout.bringChildToFront(v);
-                    switch(event.getAction()){
-                        case DragEvent.ACTION_DRAG_STARTED:
-                            layoutParams = (RelativeLayout.LayoutParams)v.getLayoutParams();
-                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_STARTED");
-                            //do nothing
-                            break;
-
-                        case DragEvent.ACTION_DRAG_ENTERED:
-                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENTERED");
-                            int x_cord = (int) event.getX();
-                            int y_cord = (int) event.getY();
-                            break;
-
-                        case DragEvent.ACTION_DRAG_EXITED :
-                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_EXITED");
-                            x_cord = (int) event.getX();
-                            y_cord = (int) event.getY();
-                            layoutParams.leftMargin = x_cord;
-                            layoutParams.topMargin = y_cord;
-                            v.setLayoutParams(layoutParams);
-                            break;
-
-                        case DragEvent.ACTION_DRAG_LOCATION  :
-                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_LOCATION");
-                            x_cord = (int) event.getX();
-                            y_cord = (int) event.getY();
-                            break;
-
-                        case DragEvent.ACTION_DRAG_ENDED   :
-                            Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENDED");
-                            // Do nothing
-                            break;
-
-                        case DragEvent.ACTION_DROP:
-                            Log.d(msg, "ACTION_DROP event");
-                            // Do nothing
-                            break;
-
-                        default: break;
-                    }
-                    return true;
-                }
-            });
         } else {
             Toast.makeText(StyleActivity.this, "You have no photos :(", Toast.LENGTH_SHORT).show();
         }
+
+        //spinner for style activity
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.style_spinner, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+
+        //save button, need to add a delete unwanted clothes function
+        Button save = (Button) findViewById(R.id.save);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //new intent goes to faves/saved looks page
+                Bitmap outfit = layout.getDrawingCache();
+                createImageFile(outfit);
+                Intent intent = new Intent(view.getContext(), FavsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //add clothing image to the layout
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                Toast.makeText(StyleActivity.this, "Photo Selected", Toast.LENGTH_SHORT).show();
+                Bitmap bm = (Bitmap) grid.getAdapter().getItem(i);
+                newView = new ImageView(StyleActivity.this);
+                newView.setImageBitmap(bm);
+                RelativeLayout layout = (RelativeLayout) StyleActivity.this.findViewById(R.id.styleFrame);
+                layout.addView(newView);
+                attachDragDropListen(newView);
+               // attachScaleGestureListen();
+            }
+        });
+
+        layout = (RelativeLayout) findViewById(R.id.styleFrame);
+        layout.setDrawingCacheEnabled(true);
+
+        //dragging apparently we dont need this
+//        layout.setOnDragListener(new View.OnDragListener() {
+//            @Override
+//            public boolean onDrag(View v, DragEvent event) {
+//                layout.bringChildToFront(v);
+//                switch(event.getAction()){
+//                    case DragEvent.ACTION_DRAG_STARTED:
+//                        layoutParams = (RelativeLayout.LayoutParams)v.getLayoutParams();
+//                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_STARTED");
+//                        //do nothing
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_ENTERED:
+//                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENTERED");
+//                        int x_cord = (int) event.getX();
+//                        int y_cord = (int) event.getY();
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_EXITED :
+//                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_EXITED");
+//                        x_cord = (int) event.getX();
+//                        y_cord = (int) event.getY();
+//                        layoutParams.leftMargin = x_cord;
+//                        layoutParams.topMargin = y_cord;
+//                        v.setLayoutParams(layoutParams);
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_LOCATION  :
+//                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_LOCATION");
+//                        x_cord = (int) event.getX();
+//                        y_cord = (int) event.getY();
+//                        break;
+//
+//                    case DragEvent.ACTION_DRAG_ENDED   :
+//                        Log.d(msg, "Action is DragEvent.ACTION_DRAG_ENDED");
+//                        // Do nothing
+//                        break;
+//
+//                    case DragEvent.ACTION_DROP:
+//                        Log.d(msg, "ACTION_DROP event");
+//                        // Do nothing
+//                        break;
+//
+//                    default: break;
+//                }
+//                return true;
+//            }
+//        });
+
+
+
     }
 
     float x_cord;
@@ -163,8 +170,49 @@ public class StyleActivity extends AppCompatActivity {
 
     private void attachDragDropListen(final ImageView img) {
         img.setOnTouchListener(new View.OnTouchListener() {
+            class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {
+                float onScaleBegin = 0;
+                float onScaleEnd = 0;
+
+                @Override
+                public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+                    scale *= scaleGestureDetector.getScaleFactor();
+                    System.out.println("Scaling");
+
+
+                    return true;
+                }
+
+                @Override
+                public boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+                    System.out.println("Scale begin");
+                    onScaleBegin = scale;
+                    return true;
+                }
+
+                @Override
+                public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+                    System.out.println("Scale end");
+                    onScaleEnd = scale;
+
+                    if (onScaleEnd > onScaleBegin) {
+                        System.out.println("scaled");
+                    }
+
+                }
+            }
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if (event.getPointerCount() == 2) {
+                    //try
+                    scaleGestureDetector = new ScaleGestureDetector(StyleActivity.this, new ScaleListener());
+                    scaleGestureDetector.onTouchEvent(event);
+                    img.setScaleX(scale);
+                    img.setScaleY(scale);
+                    return true;
+
+                }
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         x_cord = event.getRawX();
@@ -345,3 +393,50 @@ public class StyleActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
+
+//
+//    private void attachScaleGestureListen() {
+//
+////        //try
+////        newView.setOnTouchListener(new View.OnTouchListener() {
+////            @Override
+////            public boolean onTouch(View view, MotionEvent motionEvent) {
+////                scaleGestureDetector.onTouchEvent(motionEvent);
+////                return StyleActivity.super.onTouchEvent(motionEvent);
+////            }
+////        });
+////
+////        scaleGestureDetector = new ScaleGestureDetector(StyleActivity.this, new ScaleGestureDetector.OnScaleGestureListener() {
+////            float onScaleBegin = 0;
+////            float onScaleEnd = 0;
+////
+////            @Override
+////            public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+////                scale *= scaleGestureDetector.getScaleFactor();
+////                newView.setScaleX(scale);
+////                newView.setScaleY(scale);
+////
+////                return true;
+////            }
+////
+////            @Override
+////            public boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+////                System.out.println("Scale begin");
+////                onScaleBegin = scale;
+////                return true;
+////            }
+////
+////            @Override
+////            public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+////                System.out.println("Scale end");
+////                onScaleEnd = scale;
+////
+////                if (onScaleEnd > onScaleBegin) {
+////                    System.out.println("scaled");
+////                }
+////
+////
+////            }
+////        });
+//    }
