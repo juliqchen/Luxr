@@ -74,10 +74,8 @@ public class FavsActivity extends AppCompatActivity {
 
                 intent.putExtra("Display", (Parcelable) item);
                 startActivity(intent);
-
             }
         });
-
     }
 
     //menu stuff

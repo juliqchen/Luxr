@@ -81,7 +81,6 @@ public class StyleActivity extends AppCompatActivity {
                     //new intent goes to faves/saved looks page
                     Bitmap outfit = layout.getDrawingCache();
                     createImageFile(outfit);
-
                     Intent intent = new Intent(view.getContext(), FavsActivity.class);
                     startActivity(intent);
                 }
@@ -196,12 +195,10 @@ public class StyleActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
 
     private void swapDepth(ImageView img) {
     }
-
 
     //menu stuff
     @Override
@@ -344,4 +341,6 @@ public class StyleActivity extends AppCompatActivity {
         Intent intent = new Intent(v.getContext(), CameraActivity.class);
         startActivity(intent);
     }
+
+
 }
